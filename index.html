@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flaneur Travel Agency - Dijital Strateji ve Teklif Raporu</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar-item.active {
+            background-color: #2563eb; /* Blue-600 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+<div class="min-h-screen flex flex-col md:flex-row">
+    <!-- Mobil Header (Sadece mobilde görünür) -->
+    <div class="md:hidden bg-[#0f172a] text-white p-4 px-6 flex justify-between items-center sticky top-0 z-40 shadow-md">
+        <h1 class="text-2xl tracking-tight serif-font font-bold">
+            FLANEUR<span class="text-blue-500">.</span>
+        </h1>
+        <button onclick="toggleSidebar()" class="p-2 focus:outline-none bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+
+    <!-- Mobil Sidebar Arkaplan Karartması -->
+    <div id="sidebar-backdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/60 z-40 hidden md:hidden backdrop-blur-sm transition-opacity opacity-0"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out z-50 w-[280px] md:w-72 bg-[#0f172a] text-white flex flex-col shadow-2xl h-full md:h-screen">
+        <div class="p-8 border-b border-slate-800/50 flex justify-between items-start">
+            <div>
+                <h1 class="text-4xl tracking-tight serif-font font-bold">
+                    FLANEUR<span class="text-blue-500">.</span>
+                </h1>
+                <p class="text-xs text-slate-400 mt-2 tracking-widest uppercase font-medium">Travel Agency Stratejisi</p>
+            </div>
+            <!-- Mobilde yan menüyü kapatma butonu -->
+            <button onclick="toggleSidebar()" class="md:hidden p-1.5 -mr-2 text-slate-400 hover:text-white bg-slate-800 rounded-md">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+        
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto custom-scrollbar">
+            <button onclick="showTab('marka', this)" class="sidebar-item active w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                <i data-lucide="compass" class="w-5 h-5"></i>
+                <span class="font-medium text-sm">Marka ve Vizyon Özeti</span>
+            </button>
+            <button onclick="showTab('strateji', this)" class="sidebar-item w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                <i data-lucide="map" class="w-5 h-5"></i>
+                <span class="font-medium text-sm">İletişim Stratejisi</span>
+            </button>
+            <button onclick="showTab('reklam', this)" class="sidebar-item w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                <i data-lucide="megaphone" class="w-5 h-5"></i>
+                <span class="font-medium text-sm">Reklam ve Performans</span>
+            </button>
+            <button onclick="showTab('takvim', this)" class="sidebar-item w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl transition-all text-slate-300 hover:bg-slate-800 hover:text-white">
+                <i data-lucide="calendar-days" class="w-5 h-5"></i>
+                <span class="font-medium text-sm">30 Günlük İçerik Takvimi</span>
+            </button>
+            <button onclick="showTab('teklif', this)" class="sidebar-item mt-4 w-full flex items-center space-x-3 px-4 py-3.5 rounded-xl transition-all text-slate-300 hover:bg-slate-800 hover:text-white bg-blue-900/30 border border-blue-800/50">
+                <i data-lucide="gem" class="w-5 h-5 text-blue-400"></i>
+                <span class="font-medium text-blue-100 text-sm">Hizmet Detayları & Teklif</span>
+            </button>
+        </nav>
+        
+        <!-- Footer -->
+        <div class="p-6 mt-auto border-t border-slate-800/50">
+            <div class="flex items-center space-x-3 opacity-60 hover:opacity-100 transition-opacity mb-4">
+                <i data-lucide="shield-check" class="w-8 h-8 text-blue-400"></i>
+                <div class="text-left">
+                    <span class="text-[10px] text-slate-400 uppercase tracking-widest block">Hazırlayan</span>
+                    <span class="text-sm font-semibold tracking-wide">MuiMedya</span>
+                    <span class="text-[10px] text-slate-500 block mt-0.5">Dijital Büyüme Partneri</span>
+                </div>
+            </div>
+            <div class="text-center border-t border-slate-800/30 pt-3">
+                <p class="text-[10px] text-slate-500/70">© 2026 MuiMedya. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 md:p-12 overflow-y-auto w-full">
+        <header class="mb-10 pb-6 border-b border-slate-200">
+            <h2 id="page-title" class="text-4xl font-bold text-slate-900 serif-font">Marka ve Vizyon Özeti</h2>
+            <p class="text-slate-500 mt-3 text-lg">"Her Adım Bir Hikaye" mottosunu dijitalde görsel bir şölene dönüştürüyoruz.</p>
+        </header>
+
+        <!-- --- TAB: MARKA ÖZETİ --- -->
+        <div id="marka" class="tab-content active space-y-8">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center">
+                        <i data-lucide="plane-takeoff" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold serif-font text-slate-800">Flaneur Travel Agency</h3>
+                        <p class="text-slate-500 text-sm font-medium">TÜRSAB A Grubu - Belge No: 18567</p>
+                    </div>
+                </div>
+                
+                <p class="text-slate-600 leading-relaxed mb-8 text-lg">
+                    Flaneur Travel, New York'tan Tokyo Sakura dönemine, Dubai lüksünden GAP kültürüne kadar geniş bir yelpazede nitelikli turlar düzenleyen A sınıfı bir seyahat acentasıdır. Markanın en güçlü yönlerinden biri olan <strong>"Rotanı Tasarla"</strong> konsepti, modern gezginlerin kişiselleştirilmiş seyahat arzusuna doğrudan hitap etmektedir.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                        <h4 class="font-bold text-slate-800 mb-2 flex items-center"><i data-lucide="target" class="w-4 h-4 mr-2 text-blue-500"></i> Ana Hedef</h4>
+                        <p class="text-sm text-slate-600">Yüksek bütçeli uluslararası turlara (Japonya, ABD) ve özel tasarım rotalara nitelikli yolcu ("lead") çekmek.</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+                        <h4 class="font-bold text-slate-800 mb-2 flex items-center"><i data-lucide="users" class="w-4 h-4 mr-2 text-amber-500"></i> Hedef Kitle</h4>
+                        <p class="text-sm text-slate-600">Seyahati bir yaşam tarzı olarak gören, orta-üst ve üst gelir grubuna sahip, deneyim odaklı beyaz yakalılar ve aileler.</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
+                        <h4 class="font-bold text-slate-800 mb-2 flex items-center"><i data-lucide="key" class="w-4 h-4 mr-2 text-emerald-500"></i> Temel Mesaj</h4>
+                        <p class="text-sm text-slate-600">Siz hayal edin, TÜRSAB güvencesi ve Flaneur kusursuzluğuyla biz gerçekleştirelim. #HerAdımBirHikaye</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- --- TAB: İLETİŞİM STRATEJİSİ --- -->
+        <div id="strateji" class="tab-content space-y-8">
+            <div>
+                <h3 class="text-2xl font-bold text-slate-800 serif-font mb-2">Kapsamlı Dijital İletişim Stratejisi</h3>
+                <p class="text-slate-500">Flaneur Travel'ın potansiyel bir yolcuyu "hayal kurma" aşamasından "bilet alma" aşamasına nasıl taşıyacağının adım adım yol haritası.</p>
+            </div>
+
+            <!-- 1. Pazarlama Hunisi (Funnel) -->
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100">
+                <h4 class="font-bold text-xl text-slate-800 mb-6 flex items-center border-b border-slate-100 pb-4">
+                    <i data-lucide="filter" class="w-6 h-6 mr-3 text-blue-500"></i> Satış Hunisi (Funnel) Yaklaşımı
+                </h4>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="relative pl-5 border-l-4 border-blue-400">
+                        <h5 class="font-bold text-slate-800 text-lg mb-2">1. Bilinirlik (TOFU)</h5>
+                        <p class="text-xs text-blue-600 font-bold mb-3 uppercase tracking-wider">Hedef: İlham Vermek (Wanderlust)</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Geniş kitlelere ulaşmak için yüksek kaliteli, estetik POV ve drone videoları. "Japonya'da kiraz çiçekleri altında yürümek" gibi duygusal kancalar (hook) kullanılacak. Trend müziklerle Reels organik erişimi hedeflenir.</p>
+                    </div>
+                    <div class="relative pl-5 border-l-4 border-amber-400">
+                        <h5 class="font-bold text-slate-800 text-lg mb-2">2. Değerlendirme (MOFU)</h5>
+                        <p class="text-xs text-amber-600 font-bold mb-3 uppercase tracking-wider">Hedef: Güven İnşası & Detay</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Tur programı detayları, "Neden Flaneur?", TÜRSAB güvencesi, A grubu acenta prestiji, otel kalitesi ve vize destek süreçlerini anlatan bilgilendirici Carousel postlar ve rehber tanıtımları.</p>
+                    </div>
+                    <div class="relative pl-5 border-l-4 border-emerald-400">
+                        <h5 class="font-bold text-slate-800 text-lg mb-2">3. Dönüşüm (BOFU)</h5>
+                        <p class="text-xs text-emerald-600 font-bold mb-3 uppercase tracking-wider">Hedef: Aksiyon & Satış</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Web sitesini ziyaret etmiş veya form doldurmuş ancak alım yapmamış kitleye yeniden pazarlama (Retargeting) reklamları. "Japonya turunda son 3 koltuk", "Erken rezervasyon bitiyor" gibi aciliyet (FOMO) odaklı mesajlar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. İçerik Sütunları ve Kanallar -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- İçerik Sütunları -->
+                <div class="bg-gradient-to-br from-[#0f172a] to-slate-800 p-8 rounded-2xl text-white shadow-lg relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 opacity-10">
+                        <i data-lucide="layers" class="w-48 h-48"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <h4 class="font-bold text-xl mb-6 flex items-center text-blue-300">
+                            <i data-lucide="pie-chart" class="w-5 h-5 mr-3 text-blue-400"></i> İçerik Dağılım Sütunları
+                        </h4>
+                        <ul class="space-y-6 text-sm text-slate-300">
+                            <li class="flex flex-col">
+                                <span class="text-white font-bold mb-1.5 flex items-center text-base"><span class="w-2.5 h-2.5 rounded-full bg-blue-400 mr-3"></span> Estetik Seyahat (%40)</span>
+                                <span class="pl-5 opacity-80">ASMR, doğal sesler, hızlandırılmış (timelapse) şehir turları. Seyahat etme arzusunu tetikleyici görsel şölen.</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <span class="text-white font-bold mb-1.5 flex items-center text-base"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 mr-3"></span> Otorite & Uzmanlık (%30)</span>
+                                <span class="pl-5 opacity-80">Destinasyon tüyoları, vize süreçleri, bütçe yönetimi, valiz hazırlama rehberleri. "İşi bilene bırakın" mesajı.</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <span class="text-white font-bold mb-1.5 flex items-center text-base"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 mr-3"></span> Ürün & Hizmet (%20)</span>
+                                <span class="pl-5 opacity-80">Özel rota tasarımı formu, yaklaşan turların net tanıtımı, erken rezervasyon fırsatları ve fiyat avantajları.</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <span class="text-white font-bold mb-1.5 flex items-center text-base"><span class="w-2.5 h-2.5 rounded-full bg-pink-400 mr-3"></span> Sosyal Kanıt - UGC (%10)</span>
+                                <span class="pl-5 opacity-80">Tur misafirlerinin yorumları, tur sırasında çekilmiş mutlu anlar, ekibimizin şeffaf arka plan (BTS) çekimleri.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Kanal Stratejisi -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-center">
+                    <h4 class="font-bold text-xl text-slate-800 mb-6 flex items-center">
+                        <i data-lucide="share-2" class="w-5 h-5 mr-3 text-blue-500"></i> Kanal Bazlı Yaklaşım
+                    </h4>
+                    <ul class="space-y-8 text-sm text-slate-600">
+                        <li class="flex items-start group">
+                            <div class="w-12 h-12 rounded-xl bg-pink-50 text-pink-500 flex items-center justify-center flex-shrink-0 mr-4 group-hover:bg-pink-500 group-hover:text-white transition-colors">
+                                <i data-lucide="instagram" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <strong class="text-slate-800 block mb-1 text-base">Instagram (Ana Vitrin)</strong>
+                                Estetik görünüm merkezi. Reels ile organik büyüme (soğuk kitle), Storyler üzerinden günlük interaktif iletişim ve anketlerle sıcak "lead" toplama.
+                            </div>
+                        </li>
+                        <li class="flex items-start group">
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center flex-shrink-0 mr-4 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                                <i data-lucide="search" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <strong class="text-slate-800 block mb-1 text-base">Google Ads (Performans)</strong>
+                                Satın alma niyeti en yüksek kitle. "Japonya turu", "Lüks Küba turu", "Ankara çıkışlı yurt dışı turları" gibi anahtar kelimelerde spesifik arama ağı reklamları.
+                            </div>
+                        </li>
+                        <li class="flex items-start group">
+                            <div class="w-12 h-12 rounded-xl bg-green-50 text-green-500 flex items-center justify-center flex-shrink-0 mr-4 group-hover:bg-green-500 group-hover:text-white transition-colors">
+                                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <strong class="text-slate-800 block mb-1 text-base">WhatsApp & E-Mail (Kapanış)</strong>
+                                Birebir ve kişiselleştirilmiş iletişim. "Rotanı Tasarla" formunu dolduranlara hızlı, profesyonel ve VIP hissettiren özel teklif PDF'leri ile dönüş yapılması.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- --- TAB: REKLAM STRATEJİSİ --- -->
+        <div id="reklam" class="tab-content space-y-8">
+            <div>
+                <h3 class="text-2xl font-bold text-slate-800 serif-font mb-2">Performans Pazarlama ve Reklam</h3>
+                <p class="text-slate-500">Google ve Meta reklam ağları üzerinden doğrudan bilet satışına ve nitelikli başvuru toplamaya yönelik dijital reklam kurgumuz.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Google Ads -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <i data-lucide="search" class="w-32 h-32 text-blue-500"></i>
+                    </div>
+                    <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="mouse-pointer-click" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-800 mb-4">Google Ads Yaklaşımı</h4>
+                    <p class="text-sm text-slate-600 mb-6 leading-relaxed">Satın alma niyeti en yüksek olan, o an aktif olarak tur veya acenta arayan kullanıcıları yakalayarak web sitesindeki form ve satın alma sayfalarına yönlendireceğiz.</p>
+                    <ul class="space-y-4 text-sm text-slate-600">
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0 mt-0.5"></i>
+                            <div><strong>Arama Ağı (Search):</strong> "Ankara çıkışlı Japonya turu", "Ramazan Bayramı Dubai turu", "Güvenilir seyahat acentası" gibi yüksek dönüşüm oranlı anahtar kelimelerin hedeflenmesi.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0 mt-0.5"></i>
+                            <div><strong>Performance Max:</strong> Google'ın tüm ağlarında (YouTube, Gmail, Haritalar ve Partner Siteler) Flaneur Travel afiş ve videolarıyla hedef kitlenin karşısına çıkarak bilinirliği domine etme.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0 mt-0.5"></i>
+                            <div><strong>Rakip Hedefleme:</strong> Sektördeki diğer bilinen büyük acentaları arayan kişilere "Daha Butik, Daha Özel: Flaneur'ü Keşfedin" temalı alternatif reklamlar gösterme.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Meta Ads -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <i data-lucide="instagram" class="w-32 h-32 text-pink-500"></i>
+                    </div>
+                    <div class="w-14 h-14 bg-pink-50 text-pink-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="users" class="w-7 h-7"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-800 mb-4">Meta (Instagram/FB) Ads</h4>
+                    <p class="text-sm text-slate-600 mb-6 leading-relaxed">İlham verici görsellerle talebi sıfırdan yaratacak (Wanderlust) ve daha önce markamızla etkileşime girenleri rezervasyona ikna edeceğiz.</p>
+                    <ul class="space-y-4 text-sm text-slate-600">
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 text-pink-500 mr-3 flex-shrink-0 mt-0.5"></i>
+                            <div><strong>Soğuk Kitle (TOFU):</strong> Sık seyahat eden, uluslararası uçuş yapan, lüks yaşam tarzı ve belirli ülkelere ilgi duyan A/B+ sosyo-ekonomik profile yönelik "Reels" video reklamları.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 text-pink-500 mr-3 flex-shrink-0 mt-0.5"></i>
+                            <div><strong>Lead (Form) Toplama:</strong> "Rotanı Tasarla" kurgusunu doğrudan Instagram içine taşıyarak, kullanıcıyı web sitesine yormadan platform içinde özel tur taleplerini toplama.</div>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 text-pink-500 mr-3 flex-shrink-0 mt-0.5"></i>
+                            <div><strong>Yeniden Pazarlama (Retargeting):</strong> Tur sayfalarımızda vakit geçirmiş ancak form doldurmamış kişilere; "Son Odalar", "TÜRSAB Güvencesi" ve "Vize Desteği" gibi güven verici mesajlarla ikna reklamları.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 p-6 rounded-2xl flex items-start">
+                <i data-lucide="info" class="w-6 h-6 text-amber-600 mr-4 flex-shrink-0 mt-0.5"></i>
+                <div>
+                    <h4 class="font-bold text-amber-800 mb-1">Reklam Bütçesi ve Ajans Yönetimi Notu</h4>
+                    <p class="text-sm text-amber-700 leading-relaxed">Google ve Meta tarafında harcanacak olan "Medya Reklam Bütçesi", teklifte sunulan ajans hizmet bedeline dahil değildir. Bu bütçe Flaneur Travel'ın panelleri üzerinden direkt olarak reklam ağlarına ödenir. <strong class="text-amber-900">Reklam panellerinin profesyonel kurulumu, hedef kitle analizleri, A/B testleri, görsellerin tasarlanması, bütçe optimizasyonu ve piksel takipleri ajansımız tarafından aylık paket kapsamında yönetilmektedir.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- --- TAB: 30 GÜNLÜK TAKVİM --- -->
+        <div id="takvim" class="tab-content">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-800 serif-font">30 Günlük Aksiyon Takvimi</h3>
+                    <p class="text-slate-500 mt-1">Stratejik olarak planlanmış ilk ay paylaşım kurgusu (15 Ana Post/Reels + Storyler)</p>
+                </div>
+                <div class="mt-4 md:mt-0 px-4 py-2 bg-blue-50 text-blue-700 rounded-lg font-medium text-sm flex items-center">
+                    <i data-lucide="info" class="w-4 h-4 mr-2"></i> Story paylaşımları günlük/rutin olarak yapılacaktır.
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Hafta 1 -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                    <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+                        <h4 class="font-bold text-slate-800 flex items-center"><i data-lucide="flag" class="w-5 h-5 text-blue-500 mr-2"></i> 1. Hafta: Bilinirlik ve "Hero" Ürün</h4>
+                    </div>
+                    <div class="p-0">
+                        <table class="w-full text-sm text-left">
+                            <tr class="border-b border-slate-100">
+                                <td class="px-6 py-4 font-semibold w-24">Gün 2</td>
+                                <td class="px-6 py-4"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold mr-2">REELS</span> <strong>"Her Adım Bir Hikaye" (Tanıtım)</strong> <br> <span class="text-slate-500">Acentenin vizyonunu anlatan, çeşitli destinasyonlardan yüksek kaliteli kesitler içeren manifest videosu.</span></td>
+                            </tr>
+                            <tr class="border-b border-slate-100 bg-slate-50/50">
+                                <td class="px-6 py-4 font-semibold">Gün 4</td>
+                                <td class="px-6 py-4"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-bold mr-2">CAROUSEL</span> <strong>Japonya: Sakura Dönemine Hazırlık</strong> <br> <span class="text-slate-500">Seul'den Tokyo'ya Büyülü Yolculuk turumuzun öne çıkan 5 noktası (Kaydırmalı post).</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-semibold">Gün 6</td>
+                                <td class="px-6 py-4"><span class="bg-rose-100 text-rose-700 px-2 py-1 rounded text-xs font-bold mr-2">STATİK</span> <strong>Ramazan Bayramı: Dubai Rüyası</strong> <br> <span class="text-slate-500">Lüks tatil arayanlara yönelik estetik görsel + Ankara çıkışlı avantajı vurgusu.</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Hafta 2 -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                    <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+                        <h4 class="font-bold text-slate-800 flex items-center"><i data-lucide="map" class="w-5 h-5 text-amber-500 mr-2"></i> 2. Hafta: Kültür ve Güven</h4>
+                    </div>
+                    <div class="p-0">
+                        <table class="w-full text-sm text-left">
+                            <tr class="border-b border-slate-100">
+                                <td class="px-6 py-4 font-semibold w-24">Gün 9</td>
+                                <td class="px-6 py-4"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold mr-2">REELS</span> <strong>Zamanın Durduğu Ada: Küba</strong> <br> <span class="text-slate-500">Klasik arabalar, müzik ve renkli sokaklar. Dinamik bir Reels ile Küba turu tanıtımı.</span></td>
+                            </tr>
+                            <tr class="border-b border-slate-100 bg-slate-50/50">
+                                <td class="px-6 py-4 font-semibold">Gün 11</td>
+                                <td class="px-6 py-4"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold mr-2">CAROUSEL</span> <strong>"Rotanı Tasarla" Nedir?</strong> <br> <span class="text-slate-500">Web sitemizdeki kişisel tur formunun nasıl çalıştığını ve avantajlarını anlatan rehber.</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-semibold">Gün 13</td>
+                                <td class="px-6 py-4"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold mr-2">REELS</span> <strong>Güneşin Doğuşuna Yolculuk: GAP</strong> <br> <span class="text-slate-500">Göbeklitepe, Mardin sokakları ve gastronomi. Yerel dokuyu hissettiren kısa video.</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Hafta 3 -->
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+                    <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+                        <h4 class="font-bold text-slate-800 flex items-center"><i data-lucide="building" class="w-5 h-5 text-indigo-500 mr-2"></i> 3. Hafta: Eğitim ve ABD Rotası</h4>
+                    </div>
+                    <div class="p-0">
+                        <table class="w-full text-sm text-left">
+                            <tr class="border-b border-slate-100">
+                                <td class="px-6 py-4 font-semibold w-24">Gün 16</td>
+                                <td class="px-6 py-4"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-bold mr-2">CAROUSEL</span> <strong>New York'ta Ücretsiz Yapılabilecek 5 Şey</strong> <br> <span class="text-slate-500">Değer katan, "kaydet" odaklı içerik. Sonunda NY & Washington turumuza davet.</span></td>
+                            </tr>
+                            <tr class="border-b border-slate-100 bg-slate-50/50">
+                                <td class="px-6 py-4 font-semibold">Gün 18</td>
+                                <td class="px-6 py-4"><span class="bg-rose-100 text-rose-700 px-2 py-1 rounded text-xs font-bold mr-2">STATİK</span> <strong>Neden Flaneur Travel?</strong> <br> <span class="text-slate-500">TÜRSAB güvencesi, butik hizmet anlayışı ve 7/24 rehberlik desteğimizin vurgusu.</span></td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="px-6 py-4 font-semibold">Gün 20</td>
+                                <td class="px-6 py-4"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold mr-2">REELS</span> <strong>Bavul Hazırlama Tüyoları (Uzak Doğu)</strong> <br> <span class="text-slate-500">Japonya/Kore rotası için pratik valiz hazırlama ipuçları (ASMR tarzı).</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-6">
+                    <p class="text-sm text-slate-500 italic">* 4. Hafta içerikleri kampanya doluluk oranlarına ve müşteri geri dönüşlerine göre (Son dakika çağrıları, referanslar) şekillendirilecektir.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- --- TAB: TEKLİF --- -->
+        <div id="teklif" class="tab-content">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10">
+                    <h3 class="text-3xl font-bold text-slate-900 serif-font">Sosyal Medya ve Büyüme Paketi</h3>
+                    <p class="text-slate-500 mt-3 text-lg">Web sitesindeki teknik destek ile sosyal medya yönetimini birleştiren tam kapsamlı hizmet teklifi.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden relative">
+                    <!-- Ribbon -->
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-6 py-2 rounded-bl-xl tracking-widest uppercase shadow-md">İlk 3 Aylık Kapsam</div>
+                    
+                    <div class="p-8 md:p-12">
+                        <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-100 pb-8 mb-8">
+                            <div>
+                                <h4 class="text-2xl font-bold text-slate-900 mb-2">Premium Ajans Hizmeti</h4>
+                                <p class="text-slate-500">Flaneur Travel Agency Özel Paketi</p>
+                            </div>
+                            <div class="mt-6 md:mt-0 text-right">
+                                <div class="text-5xl font-extrabold text-slate-900 tracking-tight">35.000<span class="text-2xl text-slate-400 font-medium"> ₺</span></div>
+                                <div class="text-sm text-slate-400 font-medium mt-1">+ KDV / Aylık Bedel</div>
+                                <div class="text-[11px] text-blue-600 font-semibold mt-2 bg-blue-50 inline-block px-3 py-1.5 rounded-lg">* Belirtilen bedel aylık olup, anlaşma ilk 3 ayı kapsar.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h5 class="font-bold text-slate-800 mb-4 flex items-center uppercase text-sm tracking-wider">
+                                    <i data-lucide="instagram" class="w-4 h-4 mr-2 text-pink-500"></i> İçerik ve Sosyal Medya
+                                </h5>
+                                <ul class="space-y-4 text-sm text-slate-600">
+                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0"></i> <span><strong>Aylık 15 Ana İçerik:</strong> Stratejiye uygun dağılımla Reels, Carousel ve Statik Post tasarımları.</span></li>
+                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0"></i> <span><strong>Düzenli Story Yönetimi:</strong> Anketler, geri sayımlar (Örn: Küba turuna son 10 gün) ve etkileşimli hikayeler.</span></li>
+                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0"></i> <span><strong>Metin (Copywriting):</strong> Turların heyecanını yansıtan, eyleme çağrı (Call to Action) odaklı profesyonel açıklamalar.</span></li>
+                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0"></i> <span><strong>Meta Reklam Yönetimi:</strong> Kampanyaların kurulması ve optimizasyonu (Reklam harcama bütçesi ajans ücretine dahil değildir).</span></li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-bold text-slate-800 mb-4 flex items-center uppercase text-sm tracking-wider">
+                                    <i data-lucide="wrench" class="w-4 h-4 mr-2 text-slate-500"></i> Teknik Destek ve Raporlama
+                                </h5>
+                                <ul class="space-y-4 text-sm text-slate-600">
+                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0"></i> <span><strong>Sürekli Teknik Destek:</strong> Web sitenizin performansının izlenmesi, e-ticaret süreçlerindeki olası iyileştirmeler için danışmanlık.</span></li>
+                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0"></i> <span><strong>Profil Optimizasyonu:</strong> Instagram/Facebook bio, öne çıkanlar (Highlights) ve link ağacı (Linktree) kurulumu.</span></li>
+                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0"></i> <span><strong>Topluluk Yönetimi:</strong> Gelen yorumlara profesyonel ajans diliyle yanıt verilmesi veya ilgili satış departmanına yönlendirilmesi.</span></li>
+                                    <li class="flex items-start"><i data-lucide="check-circle-2" class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0"></i> <span><strong>Aylık Performans Raporu:</strong> Erişim, etkileşim ve toplanan form (lead) verilerinin ay sonunda sunumu.</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between">
+                            <p class="text-sm text-slate-500 mb-4 sm:mb-0">Raporu inceledikten sonra süreci başlatmak için onay verebilirsiniz.</p>
+                            <a href="https://wa.me/905322426012?text=Merhaba,%20Flaneur%20Travel%20Agency%20-%20Dijital%20Strateji%20ve%20Teklif%20Raporunu%20inceledim,%20s%C3%BCreci%20ba%C5%9Flatabiliriz." target="_blank" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-8 rounded-xl transition-all flex items-center justify-center shadow-lg shadow-blue-600/30">
+                                <i data-lucide="rocket" class="mr-2 w-5 h-5"></i> Süreci Başlat
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Mobil Sidebar Toggle Fonksiyonu
+    let isSidebarOpen = false;
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        
+        isSidebarOpen = !isSidebarOpen;
+        
+        if (isSidebarOpen) {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+            // Animasyonun pürüzsüz çalışması için kısa bir gecikme
+            setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+        } else {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('opacity-0');
+            setTimeout(() => backdrop.classList.add('hidden'), 300);
+        }
+    }
+
+    // Page titles mapping
+    const titles = {
+        marka: "Marka ve Vizyon Özeti",
+        strateji: "Kapsamlı Dijital İletişim Stratejisi",
+        reklam: "Reklam ve Performans Stratejisi",
+        takvim: "30 Günlük Aksiyon Takvimi",
+        teklif: "Hizmet Kapsamı ve Fiyat Teklifi"
+    };
+
+    // Tab switcher function
+    function showTab(tabId, element) {
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.classList.remove('active');
+            // Menü öğelerinin standart rengini geri yükle
+            if(!item.classList.contains('bg-blue-900/30')) {
+               item.classList.add('text-slate-300');
+               item.classList.remove('text-white', 'bg-blue-600');
+            }
+        });
+        
+        element.classList.add('active');
+        // Aktif butona blue rengi ver
+        if(!element.classList.contains('bg-blue-900/30')){
+             element.classList.add('bg-blue-600', 'text-white');
+             element.classList.remove('text-slate-300');
+        }
+       
+        document.getElementById('page-title').innerText = titles[tabId];
+        
+        // Mobil görünümde yukarı kaydır ve menüyü otomatik kapat
+        if (window.innerWidth < 768) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (isSidebarOpen) toggleSidebar();
+        }
+    }
+</script>
+
+</body>
+</html>
