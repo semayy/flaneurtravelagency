@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestij Tütün Sürdürülebilirlik Raporu 2024-2025</title>
+    <style>
+        /* ==========================================================================
+           1. Rūto Hensū to Risetto (2026 UI Dezain Shisutemu)
+           ========================================================================== */
+        :root {
+            /* Premium Color Palette */
+            --navy: #0A192F;        
+            --navy-light: #172A45; 
+            --orange: #FF5A36;      
+            --mint: #3E8E7E;        
+            --light-gray: #F3F4F6;
+            --mid-gray: #E2E8F0;
+            --white: #FFFFFF;
+            --text-main: #334155;
+            --text-muted: #64748B;
+            
+            /* Modern UI Backgrounds */
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --navy-soft: rgba(10, 25, 47, 0.04);
+            --orange-soft: rgba(255, 90, 54, 0.08);
+            --mint-soft: rgba(62, 142, 126, 0.12);
+
+            --font-family: 'Calibri', sans-serif;
+            --page-width: 210mm;
+            --page-height: 297mm;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family) !important;
+            background-color: #CBD5E1;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            line-height: 1.6;
+            font-size: 10.5pt;
+            padding: 40px 0;
+        }
+
+        /* ==========================================================================
+           2. Pēji Kōzō to Purinto Rūru
+           ========================================================================== */
+        .document-shell {
+            width: var(--page-width);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .page {
+            width: var(--page-width);
+            height: var(--page-height); 
+            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            break-after: page;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-content {
+            padding: 25mm 20mm;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+        }
+
+        @media print {
+            @page { size: A4 portrait; margin: 0; }
+            body { background: none; display: block; padding: 0; }
+            .document-shell { margin: 0; box-shadow: none; width: 100%; border-radius: 0; }
+            .page { margin: 0; box-shadow: none; }
+        }
+
+        /* ==========================================================================
+           3. Taipogurafi (2026 Editoriaru Sutandādo)
+           ========================================================================== */
+        h1, h2, h3, h4, h5 {
+            color: var(--navy);
+            font-weight: bold;
+            page-break-after: avoid;
+            break-after: avoid;
+            letter-spacing: -0.02em;
+        }
+
+        .title-xl { font-size: 48pt; line-height: 1; margin-bottom: 20px; letter-spacing: -0.04em; text-transform: uppercase; font-weight: 900; }
+        .title-l { font-size: 26pt; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.03em; }
+        .title-m { font-size: 18pt; margin-bottom: 12px; color: var(--navy); line-height: 1.2; }
+        .title-s { font-size: 13pt; margin-bottom: 6px; color: var(--orange); text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold; }
+
+        p { margin-bottom: 14px; text-align: justify; color: var(--text-main); orphans: 3; widows: 3; }
+        ul, ol { margin-bottom: 15px; padding-left: 20px; color: var(--text-main); }
+        li { margin-bottom: 6px; }
+
+        .text-light { color: var(--white) !important; }
+        .text-navy { color: var(--navy) !important; }
+        .text-orange { color: var(--orange) !important; }
+        .text-mint { color: var(--mint) !important; }
+        .text-muted { color: var(--text-muted) !important; }
+
+        .bg-navy { background-color: var(--navy); color: var(--white); }
+        .bg-mint { background-color: var(--mint); color: var(--white); }
+        .bg-orange { background-color: var(--orange); color: var(--white); }
+        .bg-gray { background-color: var(--light-gray); }
+
+        .accent-line {
+            width: 60px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--orange), #FF8C6B);
+            margin-bottom: 25px;
+            border-radius: 3px;
+        }
+
+        .brand-logo {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        /* ==========================================================================
+           4. 2026 UI Mojūru (Bento Guriido, Gurasumoofizumu)
+           ========================================================================== */
+        
+        /* Bento Box Layout */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .bento-item {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        .col-span-12 { grid-column: span 12; }
+        .col-span-8 { grid-column: span 8; }
+        .col-span-6 { grid-column: span 6; }
+        .col-span-4 { grid-column: span 4; }
+        .col-span-3 { grid-column: span 3; }
+
+        /* Glassmorphism Panel */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        /* Standard Split Layout */
+        .split-layout { display: flex; gap: 15mm; flex-grow: 1; }
+        .split-col { flex: 1; display: flex; flex-direction: column; }
+        .split-40-60 .split-col:first-child { flex: 0.4; }
+        .split-40-60 .split-col:last-child { flex: 0.6; }
+        .split-60-40 .split-col:first-child { flex: 0.6; }
+        .split-60-40 .split-col:last-child { flex: 0.4; }
+
+        /* High-End Image Containers */
+        .img-box {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            background-color: var(--mid-gray);
+        }
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Feature Lists & Fact Boxes */
+        .factbox {
+            padding: 20px;
+            border-radius: 16px;
+            margin: 15px 0;
+            page-break-inside: avoid;
+            background: var(--navy-soft);
+            border-left: 4px solid var(--navy);
+        }
+        .factbox.mint { background: var(--mint-soft); border-left-color: var(--mint); }
+        .factbox.orange { background: var(--orange-soft); border-left-color: var(--orange); }
+
+        /* Modern KPI Cards */
+        .kpi-card {
+            background: var(--white);
+            border: 1px solid var(--mid-gray);
+            padding: 20px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .kpi-num {
+            font-size: 36pt;
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1;
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
+        }
+
+        /* Editorial Text */
+        .editorial-columns { column-count: 2; column-gap: 12mm; text-align: justify; }
+        .drop-cap::first-letter {
+            float: left;
+            font-size: 52pt;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 10px;
+            color: var(--orange);
+            font-weight: 900;
+        }
+
+        /* Tables */
+        .table-container {
+            margin: 20px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--mid-gray);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        table { width: 100%; border-collapse: collapse; font-size: 9.5pt; background: var(--white); }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--mid-gray); }
+        th { background-color: var(--navy-soft); color: var(--navy); font-weight: bold; text-transform: uppercase; font-size: 9pt; letter-spacing: 0.05em; }
+        tr:last-child td { border-bottom: none; }
+
+        /* Utilities */
+        .page-number { position: absolute; bottom: 15mm; right: 20mm; font-size: 11pt; font-weight: bold; color: var(--text-muted); z-index: 10; }
+        .flex-spacer { flex-grow: 1; }
+        .mt-5 { margin-top: 5mm; } .mt-10 { margin-top: 10mm; }
+        .mb-5 { margin-bottom: 5mm; } .mb-10 { margin-bottom: 10mm; }
+        .h-100 { height: 100%; }
+
+        /* Leaf Timeline Custom CSS */
+        .leaf-timeline-wrapper { position: relative; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding: 10px 0; }
+        .leaf-timeline-wrapper::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--mint-soft); transform: translateX(-50%); }
+        .leaf-node { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; position: relative; width: 100%; page-break-inside: avoid; }
+        .leaf-node:nth-child(even) { flex-direction: row-reverse; }
+        .leaf-content-box { width: 42%; background: var(--white); padding: 15px 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-left: 4px solid var(--orange); }
+        .leaf-node:nth-child(even) .leaf-content-box { border-left: none; border-right: 4px solid var(--orange); text-align: right; }
+        .leaf-graphic {
+            width: 70px; height: 70px; background: linear-gradient(135deg, var(--mint), #2C7A60);
+            border-radius: 0 60% 0 60%; transform: rotate(45deg); display: flex; align-items: center; justify-content: center;
+            position: absolute; left: 50%; margin-left: -35px; box-shadow: 2px 5px 15px rgba(62, 142, 126, 0.3); border: 2px solid var(--white); z-index: 5;
+        }
+        .leaf-graphic span { transform: rotate(-45deg); color: var(--white); font-weight: bold; font-size: 10pt; text-align: center; line-height: 1.1; }
+
+    </style>
+</head>
+<body>
+
+    <div class="document-shell">
+
+        <!-- Peji 01: Kabaa (Cover) -->
+        <div class="page" style="padding: 0;">
+            <div class="img-box h-100" style="border-radius: 0; position: absolute; top:0; left:0; right:0; bottom:0;">
+                <img src="https://images.unsplash.com/photo-1593368858853-c598cb1b2123?auto=format&fit=crop&w=1200&q=80" alt="" style="opacity: 0.9;">
+                <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(180deg, rgba(10,25,47,0.1) 0%, rgba(10,25,47,0.85) 100%);"></div>
+            </div>
+            
+            <div class="page-content" style="justify-content: flex-end; align-items: flex-start; padding: 25mm;">
+                <div class="glass-panel" style="width: 100%; max-width: 650px;">
+                    <!-- Rogo no tsuika -->
+                    <img src="https://www.prestijtutun.com/Content/img/logo.png" alt="" class="brand-logo">
+                    
+                    <h1 class="title-xl" style="color:var(--navy);">SÜRDÜRÜLEBİLİRLİK<br>RAPORU</h1>
+                    <h2 class="title-l" style="margin-bottom: 25px; color:var(--text-muted); font-weight: 300;">2024-2025</h2>
+                    <div class="accent-line" style="width: 80px;"></div>
+                    <p style="font-size:12pt; text-align: left; color: var(--navy); font-weight: 600; margin-bottom: 0;">
+                        Doğaya Saygılı Tarım, Dayanıklı Üretim vizyonuyla, sözleşmeli tütün üretiminde değer yaratıyoruz.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Peji 02: Mokuji (TOC) -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l text-navy" style="margin-top: 10mm; font-size: 28pt; font-weight: 300; letter-spacing: 2px;">İÇİNDEKİLER</h2>
+                <div class="accent-line"></div>
+                
+                <div style="display: flex; gap: 20mm; margin-top: 30px; flex-grow: 1;">
+                    <div style="flex: 1;">
+                        <div style="margin-bottom: 35px;">
+                            <h4 style="color: var(--mint); font-size: 11pt; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid var(--mid-gray); padding-bottom: 5px;">01. Kurumsal Bakış</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0; font-size: 11pt; color: var(--navy); line-height: 2;">
+                                <li>Rapor Hakkında</li>
+                                <li>Yönetim Kurulu Başkan Mektubu</li>
+                                <li>Kurumsal Tarihçemiz</li>
+                                <li>Ürünlerimiz</li>
+                                <li>İş Modelimiz, Değer Zincirimiz</li>
+                                <li>Trendler</li>
+                                <li>Ekonomik Performans</li>
+                            </ul>
+                        </div>
+                        <div style="margin-bottom: 35px;">
+                            <h4 style="color: var(--mint); font-size: 11pt; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid var(--mid-gray); padding-bottom: 5px;">02. Yönetişim & Strateji</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0; font-size: 11pt; color: var(--navy); line-height: 2;">
+                                <li>Yönetişim & Kurumsal Risk Yönetimi</li>
+                                <li>İş Etiği & Politikalarımız</li>
+                                <li>Veri Güvenliği</li>
+                                <li>Sürdürülebilir Tedarik Zinciri</li>
+                                <li>Sürdürülebilirlik Stratejimiz & Vizyonumuz</li>
+                                <li>Paydaş Katılımı & Öncelikli Konular</li>
+                                <li>Sürdürülebilirlik Riskler ve Fırsatları</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="margin-bottom: 35px;">
+                            <h4 style="color: var(--mint); font-size: 11pt; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid var(--mid-gray); padding-bottom: 5px;">03. Operasyonlar</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0; font-size: 11pt; color: var(--navy); line-height: 2;">
+                                <li>Tütün Kalitesi ve Tarımsal Üretim Koşulları</li>
+                                <li>Agronomi Çalışmalarımız</li>
+                            </ul>
+                        </div>
+                        <div style="margin-bottom: 35px;">
+                            <h4 style="color: var(--mint); font-size: 11pt; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid var(--mid-gray); padding-bottom: 5px;">04. Çevre & Sosyal</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0; font-size: 11pt; color: var(--navy); line-height: 2;">
+                                <li>Çevre (Enerji, Su, Toprak, Atık)</li>
+                                <li>Sosyal (İSG, Çeşitlilik, Çalışan Gelişimi)</li>
+                                <li>EİB Projeleri & Üretici Uygulamaları</li>
+                                <li>Prestij Tütün Projelerinden Örnekler</li>
+                            </ul>
+                        </div>
+                        <div style="margin-bottom: 35px;">
+                            <h4 style="color: var(--mint); font-size: 11pt; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid var(--mid-gray); padding-bottom: 5px;">05. Ekler</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0; font-size: 11pt; color: var(--navy); line-height: 2;">
+                                <li>Üyelikler ve Ödüller</li>
+                                <li>Performans Göstergeleri Tabloları</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">02</div>
+        </div>
+
+        <!-- Peji 03: Rapor Hakkinda -->
+        <div class="page">
+            <div class="page-content">
+                <div class="split-layout split-60-40">
+                    <div class="split-col">
+                        <h2 class="title-l">RAPOR HAKKINDA</h2>
+                        <div class="accent-line"></div>
+                        <p>Prestij Tütün Sanayi ve Ticaret A.Ş. olarak hazırladığımız ilk sürdürülebilirlik raporumuzda; iş modelimizi, sürdürülebilirlik yaklaşımımızı ve öncelikli hedeflerimizi 2024–2025 dönemi özelinde çevresel, sosyal ve kurumsal yönetişim boyutlarıyla ele alıyor; bu alanlardaki performansımızı şeffaf bir şekilde kamuoyu ile paylaşıyoruz. Bu rapor, şirketimizin sürdürülebilirlik yolculuğunda önemli bir başlangıç noktası niteliği taşımaktadır.</p>
+                        <p>Bu rapor kapsamında Prestij Tütün Sanayi ve Ticaret A.Ş., “Prestij Tütün" ve/veya “Şirket” olarak anılacaktır. Raporda yer alan bilgiler, 1 Ocak 2024 – 31 Aralık 2025 tarihleri arasındaki 24 aylık faaliyet dönemini kapsamakta olup; şirketimizin İzmir’de bulunan merkez operasyonları kapsamaktadır.</p>
+                        <p>Bu rapor aracılığıyla, Birleşmiş Milletler tarafından 2015 yılında kabul edilen 2030 Gündemi ve Sürdürülebilir Kalkınma Amaçlarına sağladığımız katkıları, GRI Sürdürülebilirlik Raporlama Standartları ile uyumlu olarak paylaşıyoruz. Raporumuz, yalnızca mevcut performansımızı değil; aynı zamanda uzun vadeli ve sorumlu değer yaratma anlayışımızı da yansıtmaktadır.</p>
+                        <p>Sürdürülebilirlik yaklaşımımızı güçlendirmek ve gelişim alanlarımızı doğru şekilde belirleyebilmek amacıyla; üreticilerimiz, çalışanlarımız, iş ortaklarımız ve diğer paydaşlarımızın katılımıyla bir önceliklendirme analizi gerçekleştirilmiştir. Bu analiz sonucunda belirlenen öncelikli konular, çevresel, sosyal ve yönetişim başlıkları altında sınıflandırılarak rapor kapsamında detaylı şekilde ele alınmıştır.</p>
+                        <p>Prestij Tütün, sözleşmeli üretim modeli, yerli tütün kullanımının artırılması ve üretici refahının desteklenmesi odağında; Sürdürülebilirlik Komitesi liderliğinde, tüm faaliyetlerinde sürdürülebilirliği esas alan adımlar atmaya ve bu alandaki çalışmalarını kararlılıkla sürdürmeye devam edecektir.</p>
+                    </div>
+                    <div class="split-col">
+                        <div class="factbox">
+                            <h4 class="text-navy">Raporlama Dönemi</h4>
+                            <p>1 Ocak 2024 – 31 Aralık 2025 (24 Aylık Dönem)</p>
+                        </div>
+                        <div class="factbox mint">
+                            <h4 class="text-navy">Kapsam</h4>
+                            <p>İzmir Merkez Operasyonları ve Sözleşmeli Üretim Sahaları</p>
+                        </div>
+                        <div class="img-box flex-spacer mt-5">
+                            <img src="https://images.unsplash.com/photo-1593368857500-47b258dc78cc?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">03</div>
+        </div>
+
+        <!-- Peji 04: Baskan Mektubu -->
+        <div class="page bg-gray">
+            <div class="page-content">
+                <div class="split-layout">
+                    <div class="split-col" style="flex: 0.65;">
+                        <h2 class="title-l">YÖNETİM KURULU<br><span class="text-orange">BAŞKAN MEKTUBU</span></h2>
+                        <div class="accent-line"></div>
+                        <p style="font-weight: bold; color: var(--navy);">Değerli Paydaşlarımız,</p>
+                        <p>Yaprak tütün sektöründe köklü bir aile geleneğinden gelen Prestij Tütün olarak, uzun yıllara yayılan saha deneyimimizi, üreticiyle kurduğumuz güçlü bağları ve sorumlu ticaret anlayışımızı her zaman iş modelimizin merkezinde konumlandırdık. Bugün ise bu birikimi daha sistematik, ölçülebilir ve uzun vadeli bir yaklaşımla ele aldığımız ilk Sürdürülebilirlik Raporumuzu sizlerle paylaşmanın gururunu yaşıyoruz.</p>
+                        <p>Uzun yıllardır faaliyetlerimizin ayrılmaz bir parçası olan sürdürülebilirlik yaklaşımımız, 2024 yılı itibarıyla kurumsal bir çerçeveye kavuşturularak sistematik bir sürdürülebilirlik yönetimi ve raporlama süreciyle desteklenmiştir. Bu süreç, yalnızca yeni bir raporlama yaklaşımını değil; aynı zamanda çevresel, sosyal ve yönetişim alanlarında kurumsal yaklaşımımızı güçlendiren önemli bir dönüşümü ifade etmektedir.</p>
+                        
+                        <div class="factbox orange" style="border-radius: 0 20px 20px 0; margin: 25px 0;">
+                            <p style="font-size: 14pt; color: var(--navy); font-weight: bold; font-style: italic; margin-bottom: 0;">"Prestij Tütün olarak sürdürülebilirliği; geçici bir proje değil, üretim modelimizden tedarik zinciri yönetimine, üretici ilişkilerinden kurumsal yönetişime uzanan bütüncül bir sorumluluk alanı olarak ele alıyoruz."</p>
+                        </div>
+
+                        <p>Faaliyet gösterdiğimiz tütün sektörü; iklim değişikliği, doğal kaynakların korunması, yerli üretimin desteklenmesi ve üretici refahının artırılması gibi çok boyutlu sorumlulukları beraberinde getirmektedir. Bu bilinçle, üreticilerimizle uzun vadeli iş birlikleri kurmayı, yerli tütün kullanımını artırmayı ve tarımsal üretimde sürdürülebilir uygulamaları yaygınlaştırmayı temel önceliklerimiz arasında görüyoruz.</p>
+                        <p>Bu ilk rapor kapsamında; paydaşlarımızın görüşlerini de dikkate alarak gerçekleştirdiğimiz önceliklendirme çalışmalarıyla, çevresel, sosyal ve yönetişim başlıkları altında odaklanmamız gereken alanları net bir şekilde tanımladık. Önümüzdeki dönemde bu alanlarda somut hedefler belirleyerek, performansımızı düzenli olarak izlemeyi ve şeffaf biçimde paylaşmayı amaçlıyoruz.</p>
+                        <p>Prestij Tütün’ün sürdürülebilirlik yolculuğu, aile şirketi olmanın getirdiği sorumluluk bilinci ile kurumsal yönetim anlayışının birleştiği bir çizgide ilerlemektedir. Bu yaklaşımın; hem şirketimizin uzun vadeli başarısını destekleyeceğine hem de üreticilerimiz, çalışanlarımız ve içinde bulunduğumuz toplum için kalıcı değer yaratacağına inanıyorum.</p>
+                        <p>Bu ilk sürdürülebilirlik raporunun hazırlanmasında emeği geçen tüm çalışanlarımıza, üreticilerimize, iş ortaklarımıza ve paydaşlarımıza teşekkür eder; önümüzdeki yıllarda sürdürülebilirlik alanındaki çalışmalarımızı kararlılıkla geliştirmeye devam edeceğimizi özellikle vurgulamak isterim.</p>
+                        
+                        <div style="margin-top: 30px;">
+                            <p style="margin-bottom: 4px;">Saygılarımla,</p>
+                            <h3 class="title-m" style="margin-bottom: 2px;">İsmet Çakın</h3>
+                            <p style="color: var(--mint); font-weight: bold; font-size: 11pt;">Yönetim Kurulu Başkanı</p>
+                        </div>
+                    </div>
+                    <div class="split-col" style="flex: 0.35;">
+                        <div class="img-box h-100">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">04</div>
+        </div>
+
+        <!-- Peji 05: Tarihce -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l">KURUMSAL TARİHÇEMİZ</h2>
+                <div class="accent-line"></div>
+                
+                <div class="editorial-columns mt-5 drop-cap">
+                    <p>Prestij Tütün Sanayi ve Ticaret A.Ş., 20. yüzyılın ilk yarısından bu yana yaprak tütün sektöründe faaliyet gösteren Çakın Ailesi’nin köklü saha deneyimi ve ticari birikimi üzerine inşa edilerek 2005 yılında İzmir’de kurulmuştur. Şirketin temelleri; Türkiye’nin geleneksel tütün üretim bölgelerinde nesiller boyunca oluşan bilgi birikiminin kurumsal bir yapı altında toplanması ve uluslararası tütün tedarik zincirlerine entegre edilmesi vizyonuyla atılmıştır.</p>
+                    
+                    <p>Kurucu Başkanımız Mahmut Nedim Çakın, 1930’lu yılların sonlarında Samsun’un Bafra ilçesinde, genç yaşta Türkiye’den doğrudan tütün alımı yapan uluslararası sigara fabrikalarına yaprak tütün tedarik etmeye başlamıştır. Oryantal tütün üretiminin ağırlıklı olarak Ege Bölgesi’ne kaymasıyla birlikte, 1950’li yıllarda ağabeyi Hasan Çakın ile İzmir’e taşınarak Hasan Çakın Komandit Şirketi’ni kurmuş; aile, 1980’li yılların başına kadar bu yapı altında faaliyetlerini sürdürmüştür.</p>
+                    
+                    <p>1982 yılında Çakın ailesinin diğer fertlerinin de katılımıyla Çakın Tütün kurulmuş; bu dönem, aile birikiminin kurumsal yapı ve ticari ölçek açısından güçlendiği önemli bir evre olmuştur. Bu birikim ve saha deneyimi, 2005 yılında Mahmut Nedim Çakın ve İsmet Çakın liderliğinde Prestij Tütün Sanayi ve Ticaret A.Ş.’nin kurulmasıyla daha geniş bir vizyonla yeni bir kurumsal yapıya taşınmıştır. Şirket, özellikle uluslararası pazarlara yaprak tütün tedariki amacıyla yapılandırılmış ve bu kapsamda JTI S.A.’ya ihracat gerçekleştirmek üzere faaliyetlerine başlamıştır.</p>
+                    
+                    <p>Kuruluşundan itibaren Prestij Tütün, faaliyet alanını yaprak tütün üretimi ve tedariki ile sınırlandırarak bu alanda uzmanlaşmayı stratejik bir tercih olarak benimsemiştir. İlk yıllarda operasyonlarını ağırlıklı olarak Ege Bölgesi’nde yürüten şirket, zaman içerisinde Doğu ve Güneydoğu Anadolu bölgelerinde de faaliyet göstermeye başlamış; böylece tütün üretiminin farklı iklimsel, tarımsal ve sosyo-ekonomik koşullarına uyum sağlayan, coğrafi çeşitlilik temelinde güçlenen bir tedarik yapısı oluşturmuştur.</p>
+                    
+                    <p>Prestij Tütün’ün gelişim sürecinde benimsediği temel yaklaşım; tütün tarımının bölgesel koşullara duyarlı bir faaliyet alanı olduğu gerçeğinden hareketle, üreticiyle doğrudan ilişkiye dayalı ve uzun vadeli iş birlikleri kurmak olmuştur. Sözleşmeli üretim modeli, saha temelli destek mekanizmaları ve kalite odaklı yaklaşım sayesinde şirket; tedarik zincirinde güvene, sürekliliğe ve karşılıklı değer yaratımına dayalı bir yapı inşa etmiştir.</p>
+                    
+                    <p>Kurucu Başkan Mahmut Nedim Çakın’ın vefatının ardından, Yönetim Kurulu Başkanlığı görevini devralan İsmet Çakın liderliğinde şirketin kurumsal yapılanması güçlendirilmiş; üretici ağı genişletilmiş, operasyonel kapasite artırılmış ve müşteri ilişkileri sistematik bir yapıya kavuşturulmuştur. Bu dönem, Prestij Tütün’ün kurumsallaşma ve uluslararası pazarlarda kalıcı bir oyuncu haline gelme sürecinde önemli bir eşik olmuştur.</p>
+                    
+                    <p>Şirketin uluslararası pazarlara entegrasyonunda önemli bir dönüm noktası, 2012 yılında dünyanın önde gelen sigara üreticilerinden JTI ile imzalanan uzun vadeli alım sözleşmesi olmuştur. Bu stratejik iş birliği, Prestij Tütün’ün ticari kapasitesini, öngörülebilirliğini ve tedarik güvenilirliğini güçlendirerek küresel ölçekteki iş birliklerini derinleştirmiştir.</p>
+                    
+                    <p>Bugün Prestij Tütün; geçmişten gelen saha bilgisi, üreticiyle kurduğu güvene dayalı ilişkiler ve operasyonel deneyimiyle, tütün tedarik zincirinde istikrar ve sürekliliği esas alan bir yapı içerisinde faaliyetlerini sürdürmektedir. Şirket, ekonomik değer yaratımını yalnızca ticari büyüme ile sınırlı görmeyerek; üreticilerin yaşam kalitesini artırmayı, kırsal kalkınmayı desteklemeyi ve faaliyetlerinden kaynaklanan çevresel etkileri azaltmayı sürdürülebilir büyüme yaklaşımının temel bileşenleri olarak konumlandırmaktadır.</p>
+                </div>
+            </div>
+            <div class="page-number">05</div>
+        </div>
+
+        <!-- Peji 06: Tarihce Timeline -->
+        <div class="page bg-gray">
+            <div class="page-content" style="padding-top: 15mm;">
+                <h2 class="title-l text-center" style="text-align: center; color: var(--navy);">KÖKLÜ MİRASIMIZ</h2>
+                <div class="accent-line" style="margin: 0 auto 20px auto;"></div>
+                <p style="text-align: center; color: var(--text-muted); font-size:11pt; margin-bottom: 30px;">Samsun'dan Ege'ye, geçmişten geleceğe uzanan sürdürülebilir büyüme yolculuğumuz.</p>
+                
+                <div class="leaf-timeline-wrapper">
+                    <div class="leaf-node">
+                        <div class="leaf-graphic"><span>1930'lar<br>sonu</span></div>
+                        <div class="leaf-content-box">
+                            <p>Mahmut Nedim Çakın, Samsun/Bafra’da uluslararası sigara fabrikalarına yaprak tütün tedarikine başladı.</p>
+                        </div>
+                    </div>
+                    <div class="leaf-node">
+                        <div class="leaf-graphic"><span>1950'ler</span></div>
+                        <div class="leaf-content-box">
+                            <p>Oryantal tütün üretiminin Ege’ye kaymasıyla İzmir’de Hasan Çakın Komandit Şirketi kuruldu.</p>
+                        </div>
+                    </div>
+                    <div class="leaf-node">
+                        <div class="leaf-graphic"><span>1982</span></div>
+                        <div class="leaf-content-box">
+                            <p>Çakın ailesinin diğer fertlerinin katılımıyla Çakın Tütün kuruldu. Aile birikimi kurumsal bir yapıya büründü.</p>
+                        </div>
+                    </div>
+                    <div class="leaf-node">
+                        <div class="leaf-graphic"><span>2005</span></div>
+                        <div class="leaf-content-box">
+                            <p>Mahmut Nedim Çakın ve İsmet Çakın tarafından Prestij Tütün Sanayi ve Ticaret A.Ş. İzmir’de kuruldu; uluslararası pazarlara tedarik başladı.</p>
+                        </div>
+                    </div>
+                    <div class="leaf-node">
+                        <div class="leaf-graphic"><span>2005<br>-<br>2011</span></div>
+                        <div class="leaf-content-box">
+                            <p>Ege merkezli operasyonların yanı sıra Doğu ve Güneydoğu Anadolu’ya yayılım sağlandı; sözleşmeli üretim ve üretici ağı güçlendirildi.</p>
+                        </div>
+                    </div>
+                    <div class="leaf-node">
+                        <div class="leaf-graphic"><span>2012</span></div>
+                        <div class="leaf-content-box">
+                            <p>JTI ile uzun vadeli alım sözleşmesi imzalanarak uluslararası pazarlara entegrasyonda önemli bir eşik aşıldı.</p>
+                        </div>
+                    </div>
+                    <div class="leaf-node" style="margin-bottom: 0;">
+                        <div class="leaf-graphic"><span>2010'lar<br>sonrası</span></div>
+                        <div class="leaf-content-box">
+                            <p>Kurumsallaşma süreci hızlandırıldı; üretici ilişkileri, operasyonel kapasite ve sürdürülebilirlik yaklaşımı sistematik hale getirildi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">06</div>
+        </div>
+
+        <!-- Peji 07: Urunler -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l">ÜRÜNLERİMİZ</h2>
+                <div class="accent-line"></div>
+                <p style="font-size: 11pt; margin-bottom: 20px;">Prestij Tütün Sanayi ve Ticaret A.Ş., sözleşmeli tarım modeli kapsamında yaprak tütün üretimi ve tedariki alanında faaliyet göstermekte olup, farklı tütün çeşitlerinde kalite odaklı ve izlenebilir ürün portföyü sunmaktadır.</p>
+                
+                <div style="margin-bottom: 25px;">
+                    <h3 class="title-m text-mint">Oryantal (Oriental) Yaprak Tütün</h3>
+                    <p style="margin-bottom: 15px;">Prestij Tütün’ün ana ürün grubunu oluşturan oryantal yaprak tütünler; Ege Bölgesi başta olmak üzere farklı üretim havzalarında yetiştirilmekte, aroma, yaprak yapısı ve kalite özelliklerine göre sınıflandırılmaktadır. Oryantal tütün üretimi; emek-yoğun işçilik gereksinimi, saha bazlı kalite yönetimi ve hassas hasat süreçleriyle öne çıkmaktadır.</p>
+                    
+                    <div class="bento-grid" style="margin-top: 10px; gap: 15px;">
+                        <div class="bento-item col-span-3" style="padding: 0; display: flex; flex-direction: column;">
+                            <div class="img-box" style="height: 100px; border-radius: 20px 20px 0 0;">
+                                <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&w=400&q=80" alt="">
+                            </div>
+                            <div style="padding: 15px; background: var(--mint-soft); flex-grow: 1;">
+                                <h4 class="text-navy" style="font-size:11pt; margin-bottom:4px;">Ege Özbaş</h4>
+                                <p style="font-size:9pt; margin-bottom: 0;">İzmir, Balıkesir, Aydın, Manisa vb. alanlarda yetişir.</p>
+                            </div>
+                        </div>
+                        <div class="bento-item col-span-3" style="padding: 0; display: flex; flex-direction: column;">
+                            <div class="img-box" style="height: 100px; border-radius: 20px 20px 0 0;">
+                                <img src="https://images.unsplash.com/photo-1621251347065-983344634f1f?auto=format&fit=crop&w=400&q=80" alt="">
+                            </div>
+                            <div style="padding: 15px; background: var(--mint-soft); flex-grow: 1;">
+                                <h4 class="text-navy" style="font-size:11pt; margin-bottom:4px;">Sarıbağlar 2020</h4>
+                                <p style="font-size:9pt; margin-bottom: 0;">Eliptik uzun boylu, kuraklığa dayanıklı yapı.</p>
+                            </div>
+                        </div>
+                        <div class="bento-item col-span-3" style="padding: 0; display: flex; flex-direction: column;">
+                            <div class="img-box" style="height: 100px; border-radius: 20px 20px 0 0;">
+                                <img src="https://images.unsplash.com/photo-1530836369250-ef71a3f5e439?auto=format&fit=crop&w=400&q=80" alt="">
+                            </div>
+                            <div style="padding: 15px; background: var(--mint-soft); flex-grow: 1;">
+                                <h4 class="text-navy" style="font-size:11pt; margin-bottom:4px;">Akhisar 97</h4>
+                                <p style="font-size:9pt; margin-bottom: 0;">Konik uzun boylu, mavi küfe dayanıklı.</p>
+                            </div>
+                        </div>
+                        <div class="bento-item col-span-3" style="padding: 0; display: flex; flex-direction: column;">
+                            <div class="img-box" style="height: 100px; border-radius: 20px 20px 0 0;">
+                                <img src="https://images.unsplash.com/photo-1582216650478-f716b1f23b78?auto=format&fit=crop&w=400&q=80" alt="">
+                            </div>
+                            <div style="padding: 15px; background: var(--mint-soft); flex-grow: 1;">
+                                <h4 class="text-navy" style="font-size:11pt; margin-bottom:4px;">Birlik 124 & 128</h4>
+                                <p style="font-size:9pt; margin-bottom: 0;">Hafif eğimli kır-kır taban arazilerde uygun üretim.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="split-layout" style="align-items: stretch;">
+                    <div class="split-col" style="flex: 0.6; justify-content: center;">
+                        <h3 class="title-m text-orange">SCV (Güneşte Kurutulan Virginia) Tütün</h3>
+                        <p>Yerli tütün kullanım oranlarının artırılmasına yönelik mevzuat ve sektör dinamikleri doğrultusunda, Prestij Tütün’ün ürün portföyünde SCV (Virginia tipi büyük yapraklı) tütünler de yer almaktadır. Bu ürün grubu; özellikle Doğu ve Güneydoğu Anadolu bölgelerinde yaygınlaştırılan sözleşmeli üretim modeliyle tedarik edilmektedir.</p>
+                        <p>2023 yılında Hatay’da, 2024 yılında ise Adıyaman, Siirt ve Batman illerinde büyük yapraklı tütün alımına başlanması, ürün portföyünün coğrafi kapsamı ve kalite segmentleri açısından genişletilmesi bakımından önemli bir stratejik gelişme olmuştur.</p>
+                    </div>
+                    <div class="split-col" style="flex: 0.4;">
+                        <div class="img-box h-100" style="min-height: 160px;">
+                            <img src="https://images.unsplash.com/photo-1592982537447-6f23f6e8e815?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="page-number">07</div>
+        </div>
+
+        <!-- Peji 08: Is Modeli 1 -->
+        <div class="page bg-gray">
+            <div class="page-content">
+                <h2 class="title-l">İŞ MODELİMİZ VE DEĞER ZİNCİRİMİZ</h2>
+                <div class="accent-line"></div>
+                
+                <h3 class="title-m">İş Modelimiz</h3>
+                <p>Prestij Tütün Sanayi ve Ticaret A.Ş.’nin tütün iş kolu, yaprak tütün üretimi ve tedarikine odaklanan faaliyetlerden oluşmaktadır. Faaliyetler ağırlıklı olarak sözleşmeli tarım modeli çerçevesinde yürütülmekte; üretim süreçlerinin planlanması, izlenmesi ve koordinasyonu sahaya yakın bir yönetim anlayışıyla gerçekleştirilmektedir. Bu yaklaşım, ürün kalitesinin korunması ve tedarik sürekliliğinin sağlanması açısından temel bir yapı taşı olarak değerlendirilmektedir.</p>
+                <p>Prestij Tütün’ün iş modeli, sözleşmeli tarım yaklaşımı üzerine inşa edilmiş olup; sürdürülebilirlik yaklaşımının sahadaki etkinliği bu modelin uygulama gücüyle doğrudan ilişkilidir. Agronomi uzmanları, ziraat mühendisleri ve tütün eksperlerinden oluşan Teknik Saha Ekipleri aracılığıyla üretim süreçleri yerinde izlenmekte; kalite standartları, çevresel etkiler ve sosyal uygunluk unsurları üretimin tüm aşamalarında bütüncül bir yaklaşımla yönetilmektedir.</p>
+                <p>Tütün iş kolu kapsamındaki faaliyetler; üretici çiftçilerle sözleşmelerin yapılması, ekim ve üretim sürecinin saha bazlı takibi, hasat sonrası yaprak tütünün sınıflandırılması, kalite kontrol uygulamaları ve lojistik süreçlerin koordinasyonunu içermektedir. Prestij Tütün, bu süreçlerde üretici ile müşteri arasında koordinatör bir tedarik zinciri aktörü olarak konumlanmakta, tarımsal üretim ile ticari gereklilikler arasında dengeleyici bir rol üstlenmektedir.</p>
+                <p>Faaliyetler başta Ege Bölgesi olmak üzere Doğu ve Güneydoğu Anadolu bölgelerinde yürütülmektedir. Bu coğrafi çeşitlilik, tütün üretiminin bölgesel özelliklere göre farklılaşmasına imkân tanırken; iklim, verim ve üretim kaynaklı risklerin dengelenmesine de katkı sağlamaktadır.</p>
+                <p>Tütün tarımının doğası gereği Prestij Tütün’ün faaliyetleri sosyal ve çevresel etki alanlarıyla doğrudan ilişkilidir. Çiftçilerin geçim kaynaklarının sürekliliği, kırsal istihdamın korunması, çocuk işçiliği riskinin önlenmesi, su kullanımı ve toprak sağlığı şirketin sürdürülebilirlik yaklaşımı çerçevesinde öncelikli ele aldığı konulardır.</p>
+                
+                <div class="factbox mint">
+                    <p style="color: var(--navy); font-weight: bold; font-size: 11pt;">Saha Teknik Ekibi, üreticilere sezon boyunca ziyaretler gerçekleştirerek ALP (Tarımsal Çalışma Uygulamaları) çerçevesinde çocuk işçiliği riski, asgari ücret uygulamaları ve sosyal uygunluk konularında bilgilendirme yapar.</p>
+                </div>
+
+                <h3 class="title-m mt-10">Değer Zinciri Aşamaları</h3>
+                <div class="bento-grid">
+                    <div class="bento-item col-span-12" style="border-left: 4px solid var(--orange);">
+                        <h4 class="title-s" style="text-transform: none;">1) Üretim Öncesi Aşamalar: Tarımsal Tedarik, Sözleşmeli Tarım ve Kalite Yönetimi</h4>
+                        <p style="margin-bottom:0;">Prestij Tütün’ün değer zincirinin üretim öncesi aşaması, yaprak tütünün tarımsal üretimi ve sözleşmeli tedarik süreçleriyle başlamaktadır. Tarımsal üretim süreci; fidelik hazırlama, dikim, tarla bakımı, hasat, kurutma, istif, kutulama ve alım aşamalarından oluşmaktadır. Bu süreçlerde mekanizasyon, verimlilik ve kalite sürekliliğini destekleyen önemli bir unsur olarak öne çıkmaktadır.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">08</div>
+        </div>
+
+        <!-- Peji 09: Is Modeli 2 -->
+        <div class="page">
+            <div class="page-content">
+                <div class="split-layout">
+                    <div class="split-col" style="flex: 0.55;">
+                        <div class="bento-item factbox" style="margin-top: 0; background: var(--white); border-left: 4px solid var(--mint);">
+                            <h4 class="title-s" style="text-transform: none; color: var(--navy);">2) Doğrudan Operasyonlar</h4>
+                            <p style="margin-bottom:0;">Doğrudan operasyonlar, Prestij Tütün’ün kendi organizasyonu bünyesinde yürüttüğü kalite kontrol, depolama, ticaret ve operasyonel planlama faaliyetlerini kapsamaktadır. Bu aşamada öncelikli yönetim alanları; ürün kalitesinin korunması, operasyonel verimliliğin sağlanması ve müşteri siparişlerinin zamanında ve doğru şekilde karşılanmasıdır.</p>
+                        </div>
+
+                        <div class="bento-item factbox" style="background: var(--white); border-left: 4px solid var(--orange);">
+                            <h4 class="title-s" style="text-transform: none; color: var(--navy);">3) Üretim Sonrası Aşamalar</h4>
+                            <p>Üretim sonrası aşamalar, ürünlerin müşterilere ulaştırılmasını kapsayan satış, lojistik ve dağıtım faaliyetlerinden oluşmaktadır.</p>
+                            <ul style="margin-bottom:0;">
+                                <li>Müşteri taleplerine göre şekillenen esnek dağıtım modelleri</li>
+                                <li>Ürün kalitesini ve ticari sürekliliği gözeten lojistik planlama</li>
+                                <li>Pazara ve müşteri segmentlerine uyum sağlayan satış kanalları</li>
+                            </ul>
+                        </div>
+
+                        <div class="bento-item factbox" style="background: var(--white); border-left: 4px solid var(--navy);">
+                            <h4 class="title-s" style="text-transform: none; color: var(--navy);">4) Yaşam Döngüsünün Sonu</h4>
+                            <p style="margin-bottom:0;">Yaprak tütün, kullanım sonrası geri kazanımı mümkün olmayan bir ürün niteliği taşımaktadır. Yaşam döngüsünün sonu aşaması; ağırlıklı olarak ambalaj atıkları, lojistik süreçlerde kullanılan malzemeler ve tüketim sonrası ortaya çıkan dolaylı çevresel etkiler üzerinden değerlendirilmektedir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="split-col" style="flex: 0.45;">
+                        <div class="img-box" style="height: 280px; margin-bottom: 20px;">
+                            <img src="https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                        <div class="bento-item bg-navy text-light" style="flex-grow: 1;">
+                            <h4 class="text-orange" style="margin-bottom: 10px;">Sektör Düzenlemeleri</h4>
+                            <p class="text-light">Prestij Tütün’ün faaliyet gösterdiği tütün sektörü, 4733 sayılı Kanun kapsamında şekillenmektedir. 2020 yılında yürürlüğe giren düzenlemeler doğrultusunda, tütün mamulü üreticilerinin yerli tütün kullanım oranlarını kademeli olarak artırmaları zorunlu hale getirilmiştir:</p>
+                            <ul style="margin-top: 15px; color: var(--white);">
+                                <li>2022: %17</li>
+                                <li>2023: %21</li>
+                                <li>2024: %25</li>
+                                <li style="color: var(--mint); font-weight: bold; font-size: 12pt;">2025: %30</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">09</div>
+        </div>
+
+        <!-- Peji 10: Trendler -->
+        <div class="page bg-navy text-light">
+            <div class="page-content">
+                <h2 class="title-l text-white">SEKTÖREL TRENDLER</h2>
+                <div class="accent-line" style="background: var(--mint);"></div>
+                <p style="color: #cbd5e0; font-size: 12pt; margin-bottom: 30px;">Tütün sektörü küresel düzeyde tüketici alışkanlıklarındaki değişimler, sıkılaşan yasal mevzuatlar ve sürdürülebilirlik beklentileri ekseninde dönüşüm geçirmektedir. Değer zinciri operasyonlarımızı bu ana trendlere göre şekillendiriyoruz.</p>
+
+                <div class="bento-grid">
+                    <div class="bento-item col-span-12" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                        <h4 class="text-mint" style="font-size: 14pt;">Bulunulan Sektöre Özel Gelişmeler</h4>
+                        <h5 style="color: var(--orange); margin-bottom: 10px; font-size:12pt;">Alternatif Ürünlere Yönelim</h5>
+                        <p class="text-white">2024 yılında tütün sektörü hem küresel düzenlemeler hem de tüketici davranışlarındaki değişimlerle şekillenmektedir. Dünya genelinde tütün ürünlerine yönelik düzenleyici baskıların artması, şirketleri ürün portföylerini yeniden değerlendirmeye ve alternatif ürünlere yönelmeye zorlamaktadır. Sağlık bilincinin artmasıyla birlikte e-sigara ve ısıtılmış tütün ürünleri gibi alternatif nikotin ürünlerine olan talep yükselmektedir.</p>
+                        <p class="text-white" style="margin-top:10px;">Aynı zamanda sürdürülebilirlik ve çevresel sorumluluk, karbon ayak izinin azaltılması, sürdürülebilir tarım uygulamaları ve çevre dostu ambalajlama gibi alanlarda şirketler için temel odak haline gelmiştir.</p>
+                    </div>
+
+                    <div class="bento-item col-span-6" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                        <h4 class="text-mint" style="font-size: 14pt;">Sektörü Etkileyen Mega Trendler</h4>
+                        <h5 style="color: var(--orange); margin-bottom: 10px; font-size:12pt;">Yerli Tütün Yasası</h5>
+                        <p class="text-white">Yerli Tütün Yasası kapsamında büyük yapraklı tütün üretiminde yaşanan artış; üretim miktarları, ticaret dengeleri ve sürdürülebilirlik uygulamaları üzerinde belirleyici bir etki yaratmaktadır. Sektör paydaşları, ürün portföylerini düzenleyici çerçeve doğrultusunda gözden geçirmektedir.</p>
+                    </div>
+                    
+                    <div class="bento-item col-span-6" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                        <h4 class="text-mint" style="font-size: 14pt;">Yerel / Uluslararası Mevzuat</h4>
+                        <h5 style="color: var(--orange); margin-bottom: 10px; font-size:12pt;">Türkiye’de Yerli Tütün Zorunluluğu</h5>
+                        <p class="text-white">2020 yılında yürürlüğe giren düzenleme ile tütün mamulü üreticilerinin yerli tütün kullanım oranları 2025'te %30'a ulaşacak şekilde artırılmıştır. Tedarik zinciri ve üretim planlamalarının mevzuata uyumlu şekilde yeniden yapılandırılmasını zorunlu hale getirmektedir.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number" style="color: rgba(255,255,255,0.5);">10</div>
+        </div>
+
+        <!-- Peji 11: Ekonomik Performans -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l">EKONOMİK PERFORMANS</h2>
+                <div class="accent-line"></div>
+                
+                <div class="bento-grid" style="margin-top: 0; margin-bottom: 20px;">
+                    <div class="bento-item col-span-3 kpi-card" style="border-bottom: 4px solid var(--navy);">
+                        <div class="kpi-num">8.5M+</div>
+                        <div class="kpi-text">Sözleşmeli Tarım Hacmi KG (2025)</div>
+                    </div>
+                    <div class="bento-item col-span-3 kpi-card" style="border-bottom: 4px solid var(--orange);">
+                        <div class="kpi-num">5,492</div>
+                        <div class="kpi-text">Sözleşmeli Üretici Sayısı (2025)</div>
+                    </div>
+                    <div class="bento-item col-span-3 kpi-card" style="border-bottom: 4px solid var(--mint);">
+                        <div class="kpi-num">1.03 Mr</div>
+                        <div class="kpi-text">Satış Geliri (TL - 2024)</div>
+                    </div>
+                    <div class="bento-item col-span-3 kpi-card" style="border-bottom: 4px solid var(--navy-light);">
+                        <div class="kpi-num">1.0 Mr</div>
+                        <div class="kpi-text">Tedarikçi/Çiftçi Ödemeleri (TL)</div>
+                    </div>
+                </div>
+
+                <p>Prestij Tütün Sanayi ve Ticaret A.Ş.’nin ekonomik performansı, yaprak tütün üretimi ve tedariki faaliyetleri kapsamında geliştirdiği sözleşmeli tarım modeli, yaygın üretici ağı ve doğrudan müşteri ilişkileri üzerinden şekillenmektedir. Şirket, ekonomik değer yaratımını üretim hacmi, tedarik sürekliliği, ürün kalitesi ve üretici gelirleri ekseninde bütüncül bir yaklaşımla ele almaktadır.</p>
+                <p>Satış gelirlerindeki artış, Prestij Tütün’ün üretim ölçeğini kademeli olarak genişlettiğini, tedarik zinciri içerisindeki konumunu güçlendirdiğini ve müşteri portföyünde süreklilik sağladığını göstermektedir. Tedarikçi ve çiftçilere yapılan ödemelerde yüksek oranlı artışlar gerçekleşmiş; üreticilere aktarılan ekonomik değerin her yıl artarak devam ettiği bir yapı oluşmuştur.</p>
+
+                <h3 class="title-s mt-10" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Türkiye Tütün Üretim Hacmi (Ton) 2020-2024</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Menşei</th>
+                                <th>2020</th>
+                                <th>2021</th>
+                                <th>2022</th>
+                                <th>2023</th>
+                                <th>2024</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>İzmir</td><td>40.916</td><td>33.000</td><td>37.400</td><td>41.100</td><td>41.200</td></tr>
+                            <tr><td>Samsun</td><td>3.341</td><td>4.100</td><td>3.565</td><td>2.980</td><td>2.980</td></tr>
+                            <tr><td>Basma</td><td>4.285</td><td>2.800</td><td>1.625</td><td>1.490</td><td>1.490</td></tr>
+                            <tr><td>İzmir Adıyaman</td><td>11.192</td><td>10.800</td><td>6.520</td><td>5.940</td><td>5.940</td></tr>
+                            <tr><td>SCV-FCV</td><td>4.188</td><td>5.100</td><td>5.950</td><td>17.600</td><td>2.300</td></tr>
+                            <tr><td>Prilep</td><td>800</td><td>710</td><td>510</td><td>2.300</td><td>1.750</td></tr>
+                            <tr><td>Talgar-Burley</td><td>20</td><td>230</td><td>550</td><td>1.750</td><td>17.600</td></tr>
+                            <tr><td>Diğer*</td><td>664</td><td>1.495</td><td>2.725</td><td>4.934</td><td>740</td></tr>
+                            <tr style="font-weight:bold; background-color: var(--mint-soft); color: var(--navy);">
+                                <td>Toplam</td><td>65.406</td><td>58.235</td><td>58.845</td><td>78.094</td><td>74.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p>2024 yılı, şirket açısından tedarik ağının çeşitlendirildiği ve bölgesel genişlemenin hız kazandığı bir dönem olmuştur. Güçlü finansal sonuçlar, 2025 yılı için 10 milyon kg’ı aşan sözleşmelerin imzalanmasını mümkün kılmıştır.</p>
+            </div>
+            <div class="page-number">11</div>
+        </div>
+
+        <!-- Peji 12: Yonetisim -->
+        <div class="page bg-gray">
+            <div class="page-content">
+                <div class="split-layout">
+                    <div class="split-col" style="flex: 0.55;">
+                        <h2 class="title-l">YÖNETİŞİM</h2>
+                        <div class="accent-line"></div>
+                        <p>Prestij Tütün Sanayi ve Ticaret A.Ş. için sürdürülebilir yönetim; ekonomik performansın korunmasıyla birlikte faaliyetlerden kaynaklanan çevresel ve sosyal etkilerin sorumlu bir yaklaşımla yönetilmesini ve bu üç boyutun kurumsal yönetişim yapısı içinde bütüncül olarak ele alınmasını ifade etmektedir.</p>
+                        <p>Tarımsal üretime dayalı değer zinciri dikkate alındığında bu yaklaşım; tedarik sürekliliğinin sağlanması, ürün kalitesinin korunması ve üretici ilişkilerinin uzun vadeli yönetimi üzerine kuruludur. Yönetim Kurulu’nun gözetimi altında yürütülen yapı, Disiplin Komitesi ve KVKK Komitesi ile desteklenmektedir.</p>
+
+                        <h3 class="title-s mt-10" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Yönetim Yapısı ve Organizasyon</h3>
+                        <p>Prestij Tütün’ün yönetim yapısı, stratejik yönlendirme ile operasyonel uygulamalar arasında güçlü bir uyum sağlayacak şekilde kurgulanmıştır. Üst yönetim planlamaya odaklanırken; operasyonel ekipler saha süreçlerini yönetir. Şirket Yönetim Kurulu’nun Ege İhracatçı Birlikleri Tütün Yönetim Kurulu’nda temsiliyeti, sektörel gelişime aktif katkı sunma yaklaşımını yansıtır.</p>
+
+                        <h3 class="title-s mt-10" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Saha Yönetimi ve Operasyonel Yönetişim</h3>
+                        <p>Prestij Tütün’ün yönetişim yaklaşımının önemli bir unsuru, sahaya yakın yönetim modelidir. Mıntıka ve alt mıntıkalar aracılığıyla örgütlenen saha yapılanması sayesinde üretici ilişkilerinin sürekliliği, kalite takibi ve sözleşmeli tarım yönetimi sağlanır.</p>
+                        <p>Şirketimiz, tarımsal uzmanlık kapasitesini güçlendirme hedefi doğrultusunda 2024 yılında 5, 2025 yılında ise 3 yeni mezun ziraat mühendisini bünyesine katmıştır. Genç yetenekler sektöre kazandırılırken, agronomik kapasitenin uzun vadeli gelişimi desteklenmiştir.</p>
+                        
+                        <h3 class="title-s mt-10" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Sürdürülebilirlik Yönetişimi</h3>
+                        <p>Prestij Tütün, 2024 yılı itibarıyla sürdürülebilirlik çalışmalarını daha yapılandırılmış ele almaya başlamış; stratejiyi üst yönetim düzeyinde değerlendirerek ESG başlıklarını genel iş stratejileriyle ilişkilendirmiştir.</p>
+                    </div>
+                    <div class="split-col" style="flex: 0.45;">
+                        <div class="img-box" style="height: 300px; margin-bottom: 20px;">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                        <div class="bento-item factbox navy" style="margin: 0; flex-grow: 1;">
+                            <h4 class="text-navy">Politika Yaklaşımı ve Uyum</h4>
+                            <p>Faaliyetleri yürütürken ulusal ve uluslararası müşteri gereklilikleri ile uyumlu bir yaklaşım benimsenmektedir:</p>
+                            <ul style="margin-top:15px; margin-bottom:0; font-size: 10.5pt;">
+                                <li>Sözleşmeli tarım süreçleri</li>
+                                <li>Çalışma koşulları ve haklar</li>
+                                <li>Çocuk işçiliği riskinin önlenmesi</li>
+                                <li>İş sağlığı ve güvenliği</li>
+                                <li>Çevresel etkilerin yönetimi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">12</div>
+        </div>
+
+        <!-- Peji 13: Kurumsal Risk -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l">KURUMSAL RİSK YÖNETİMİ</h2>
+                <div class="accent-line"></div>
+                <p>Prestij Tütün, faaliyet gösterdiği tedarik zinciri boyunca ortaya çıkabilecek çevresel, sosyal ve yönetsel riskleri sistematik bir yaklaşımla ele almakta; risk yönetimini sürdürülebilir iş yapış biçiminin temel unsurlarından biri olarak konumlandırmaktadır. Döngüsel risk yönetimi ile operasyonel dayanıklılık güçlendirilmektedir.</p>
+
+                <div class="bento-grid mt-10">
+                    <div class="bento-item col-span-6" style="border-top: 4px solid var(--navy);">
+                        <h4 class="text-navy" style="font-size: 13pt;">MAS ve ALP Sistemleri</h4>
+                        <p style="font-size: 10pt;">Sorumlu tütün üretimini güvence altına almak amacıyla tarımsal faaliyetler MAS (Minimum Agricultural Standards) ve ALP (Agricultural Labour Practices) sistemleri çerçevesinde yönetilmektedir. MAS tütün üretiminde çevresel koruma ve iyi tarım uygulamalarını; ALP ise çocuk işçiliğinin önlenmesi, İSG ve çalışma koşullarını kapsar.</p>
+                    </div>
+
+                    <div class="bento-item col-span-6" style="border-top: 4px solid var(--orange);">
+                        <h4 class="text-navy" style="font-size: 13pt;">SCDD ve Tedarikçi Yapısı</h4>
+                        <p style="font-size: 10pt;">MAS ve ALP uygulamaları, Tedarik Zinciri Durum Tespiti (SCDD) sürecinin temel araçlarıdır. Prestij Tütün’ün tedarik zinciri büyük ölçüde yerli tedarikçilere dayanmaktadır. Toplam tedarikçi sayısı 2024'te 248'e yükselmiş, yerli tedarikçi oranı %96 seviyesinde korunmuştur.</p>
+                    </div>
+                    
+                    <div class="bento-item col-span-6" style="border-top: 4px solid var(--mint);">
+                        <h4 class="text-navy" style="font-size: 13pt;">SCIA: Etki Değerlendirmesi</h4>
+                        <p style="font-size: 10pt;">BM İş ve İnsan Hakları Rehber İlkeleri doğrultusunda tütün sektöründe Tedarik Zinciri Etki Değerlendirmesi (SCIA) yapılmıştır. Ege Tütün İhracatçıları Birliği ile Çocuk İşçiliği, İSG ve Çalışma Koşulları grupları oluşturularak sektörel eylem planları başlatılmıştır.</p>
+                    </div>
+
+                    <div class="bento-item col-span-6 bg-navy text-light" style="border-top: 4px solid var(--mint);">
+                        <h4 class="text-mint" style="font-size: 13pt;">IDA ve Sürekli İyileştirme</h4>
+                        <p style="font-size: 10pt; color: rgba(255,255,255,0.9);">2024 yılında Sürdürülebilir Tütün Üretimi (STP) programı kapsamında Derinlemesine Değerlendirme (IDA) çalışması gerçekleştirilmiş, insan hakları, işçi hakları ve çevresel riskler analiz edilmiştir. Elde edilen bulgularla sektör bazlı aksiyon planları geliştirilmiştir.</p>
+                    </div>
+                </div>
+
+                <div class="img-box mt-5 flex-spacer">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80" alt="">
+                </div>
+
+            </div>
+            <div class="page-number">13</div>
+        </div>
+
+        <!-- Peji 14: Is Etigi -->
+        <div class="page bg-gray">
+            <div class="page-content">
+                <div class="split-layout">
+                    <div class="split-col" style="flex: 0.6;">
+                        <h2 class="title-l">İŞ ETİĞİ & POLİTİKALAR</h2>
+                        <div class="accent-line"></div>
+                        
+                        <p>Prestij Tütün, faaliyetlerini yürütürken dürüstlük, güvenilirlik ve sorumlu iş yapma ilkelerini temel değerler olarak benimsemektedir. İş etiğini, tüm paydaş ilişkilerine yön veren bir kurumsal kültür unsuru olarak ele almaktadır. Müşteri memnuniyeti, kalite odaklı operasyonlar aracılığıyla desteklenmektedir.</p>
+
+                        <h3 class="title-m mt-10">Politikalarımız</h3>
+                        <div class="bento-grid" style="margin-top: 10px; gap: 10px;">
+                            <div class="bento-item col-span-12 factbox" style="margin:0; padding:15px; border-left: 3px solid var(--navy);">
+                                <p style="margin:0; font-size: 9.5pt;"><strong>Genel Politika:</strong> Faaliyetlerin sürdürülebilirlik ilkeleri ve yasal gerekliliklerle uyumlu yürütülmesini sağlar.</p>
+                            </div>
+                            <div class="bento-item col-span-12 factbox" style="margin:0; padding:15px; border-left: 3px solid var(--orange);">
+                                <p style="margin:0; font-size: 9.5pt;"><strong>İnsan Hakları Politikası:</strong> İnsan haklarına saygı, ayrımcılık ve zorla çalıştırmayı önleme.</p>
+                            </div>
+                            <div class="bento-item col-span-12 factbox" style="margin:0; padding:15px; border-left: 3px solid var(--mint);">
+                                <p style="margin:0; font-size: 9.5pt;"><strong>Çalışan Politikası:</strong> Çalışan hakları, eşit fırsat ve çalışma koşullarının iyileştirilmesi.</p>
+                            </div>
+                            <div class="bento-item col-span-12 factbox" style="margin:0; padding:15px; border-left: 3px solid var(--navy-light);">
+                                <p style="margin:0; font-size: 9.5pt;"><strong>Bilgi Güvenliği & Gizlilik (KVKK):</strong> Dijital varlıkların ve kişisel verilerin korunması.</p>
+                            </div>
+                            <div class="bento-item col-span-12 factbox" style="margin:0; padding:15px; border-left: 3px solid var(--orange);">
+                                <p style="margin:0; font-size: 9.5pt;"><strong>Pandemi Politikası & Çerez Politikası:</strong> Sağlık riskleri yönetimi ve dijital erişim düzenlemeleri.</p>
+                            </div>
+                            <div class="bento-item col-span-12 factbox" style="margin:0; padding:15px; border-left: 3px solid var(--mint);">
+                                <p style="margin:0; font-size: 9.5pt;"><strong>Üretici Aydınlatma Metni:</strong> Sözleşmeli tarım üreticilerinin bilgilendirilmesi ve izlenebilirlik süreçleri.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="split-col" style="flex: 0.4;">
+                        <div class="bento-item bg-navy text-light" style="margin-bottom: 20px;">
+                            <h4 class="text-orange">Müşteri Memnuniyeti</h4>
+                            <p style="color: var(--white); font-size: 10pt; margin-bottom: 0;">Müşterilerin kalite, süreklilik ve güvenilirlik beklentilerinin karşılanmasını esas alan, uzun vadeli iş ilişkilerini destekleyen temel bir yönetim önceliğidir. Ürün kalitesinin korunması, teslimat sürekliliği, izlenebilirlik ve şeffaf iletişim unsurları üzerine kuruludur.</p>
+                        </div>
+                        <div class="img-box flex-spacer">
+                            <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">14</div>
+        </div>
+
+        <!-- Peji 15: Tarimsal Kosullar -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l">TÜTÜN KALİTESİ VE<br>TARIMSAL ÜRETİM KOŞULLARI</h2>
+                <div class="accent-line"></div>
+                <p>Prestij Tütün Sanayi ve Ticaret A.Ş. için tütün kalitesi, değer zincirinin tüm aşamalarını doğrudan etkileyen temel bir performans kriteridir. Yaprak tütünün kalitesi; iklim koşulları, toprak özellikleri ve tarımsal uygulamaların bütüncül yönetimi ile yakından ilişkilidir. Bu nedenle şirket, tütün üretimini belirli iklim ve toprak koşullarına sahip bölgelerde, sözleşmeli tarım modeli kapsamında yürütmeyi esas almaktadır.</p>
+                
+                <div class="bento-grid mt-10">
+                    <div class="bento-item col-span-6" style="background: var(--navy-soft);">
+                        <h4 class="title-s" style="color:var(--navy); text-transform: none; letter-spacing: 0;">Toprak Yapısı</h4>
+                        <p style="font-size: 10pt;">Tütün bitkisi, kumlu-tınlı, humus bakımından zengin ve su tutma kapasitesi düşük topraklarda yüksek kalite gösterir. Bu yapı kök gelişimini destekler.</p>
+                        
+                        <h4 class="title-s mt-5" style="color:var(--navy); text-transform: none; letter-spacing: 0;">Sıcaklık Koşulları</h4>
+                        <p style="font-size: 10pt;">Tohum ekimi hava sıcaklığı 7-12°C olduğunda gerçekleşir. Toprak en az 11°C olmalıdır. Tütün, 26-27°C sıcaklık aralığında 80-90 gün içinde gelişimini tamamlar.</p>
+                        
+                        <h4 class="title-s mt-5" style="color:var(--navy); text-transform: none; letter-spacing: 0;">Işık Koşulları</h4>
+                        <p style="font-size: 10pt;">Yeterli güneş ışığına erişim kritik öneme sahiptir. Gölge oluşumundan kaçınılması, yaprak gelişiminin homojenliği açısından şarttır.</p>
+                    </div>
+                    <div class="bento-item col-span-6" style="background: var(--mint-soft);">
+                        <h4 class="title-s" style="color:var(--navy); text-transform: none; letter-spacing: 0;">Yağış ve Nem Yönetimi</h4>
+                        <p style="font-size: 10pt;">Fidelik döneminde kontrollü sulama yapılır. Dikimi takip eden 30 gün yağış olumludur. Ancak olgunlaşma, kırım ve kurutma dönemlerinde yağış kaliteyi düşürür. Kurutma %50 altı nemde olmalıdır.</p>
+                        
+                        <h4 class="title-s mt-5" style="color:var(--navy); text-transform: none; letter-spacing: 0;">Rüzgar Etkisi</h4>
+                        <p style="font-size: 10pt;">Hafif rüzgarlar havalandırmayı destekler; ancak kuvvetli rüzgarlar bitki dokularını kalınlaştırarak yanma ve içim kalitesini olumsuz etkiler.</p>
+
+                        <div class="bento-item bg-orange text-light" style="margin-top: 20px; margin-bottom: 0;">
+                            <h4 class="text-white" style="font-size: 12pt;">İklim Duyarlılığı</h4>
+                            <p style="color: white; font-size: 10pt; margin-bottom: 0;">İklime duyarlı bir ürün olan tütün için kalite yönetimi, aynı zamanda iklim risklerinin yönetilmesi açısından da stratejik öneme sahiptir.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="page-number">15</div>
+        </div>
+
+        <!-- Peji 16: Agronomi -->
+        <div class="page bg-gray">
+            <div class="page-content">
+                <div class="split-layout">
+                    <div class="split-col" style="flex: 0.6;">
+                        <h2 class="title-l">AGRONOMİ ÇALIŞMALARI</h2>
+                        <div class="accent-line"></div>
+                        <p>Prestij Tütün, ürün kalitesinin korunması ve geliştirilmesi, tarımsal üretim süreçlerinin iyileştirilmesi ile operasyonel verimliliğin artırılması amacıyla inovasyon ve süreç geliştirme odaklı bir yaklaşım benimsemektedir.</p>
+                        <p>İnovasyon, dijitalleşme ve agronomik uygulamalara ayrılan kaynakların şirket cirosu içindeki payı son üç yıllık dönemde %0,6 – %0,8 aralığında seyretmiş olup, bu oran operasyonel büyüme ile uyumlu şekilde söz konusu alanlara istikrarlı bir yatırım yaklaşımının benimsendiğini göstermektedir.</p>
+                        
+                        <h3 class="title-s mt-5" style="color: var(--navy); text-transform: none; letter-spacing: 0;">One Leaf Entegre Yönetim Sistemi</h3>
+                        <p>Tarımsal üretim ve tedarik süreçlerinde One Leaf entegre yönetim sistemi kullanımı yaygınlaştırılarak saha operasyonlarının dijital ortamda izlenmesi sağlanmış; veri akışı hızlandırılmış ve izlenebilirlik artırılmıştır. Karar alma süreçleri veri temelli desteklenmektedir.</p>
+
+                        <h3 class="title-s mt-5" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Tohum Üretimi ve İnovasyon</h3>
+                        <p>2019 yılında başlatılan tohum üretimi faaliyetleri, yeni sistem seralar, teknolojik sulama iyileştirmeleri ve toprak analizlerine dayalı ürün kullanımıyla geliştirilmiştir. Verimlilik artışları ve standartlaşma sağlanmıştır. Akredite laboratuvarlarla ürün kalite kontrolleri düzenli yapılmaktadır. İnovasyon süreçlerinde 2024 yılında 3 tam zamanlı uzman istihdam edilmiştir.</p>
+
+                        <h2 class="title-l mt-10">VERİ GÜVENLİĞİ</h2>
+                        <div class="accent-line" style="width: 40px; background-color: var(--mint);"></div>
+                        <p>Tüm bilgi ve kişisel verilerin gizliliği ve güvenliği, Bilgi Güvenliği Talimatı çerçevesinde korunur. Ağ güvenliği, DLP çözümleri ve anti-virüs sistemleriyle olası ihlaller engellenir. Tüm süreçler 6698 sayılı KVKK ile tam uyumludur. Son üç yıl içerisinde müşteri gizliliğine ilişkin hiçbir veri ihlali veya kayıp yaşanmamıştır. Sistem sürekliliği VMware, Veeam ve NAS altyapıları ile yedeklenerek sağlanmaktadır.</p>
+                    </div>
+                    <div class="split-col" style="flex: 0.4;">
+                        <div class="img-box" style="height: 55%; margin-bottom: 20px;">
+                            <img src="https://images.unsplash.com/photo-1595804368551-78cd114421b0?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                        <div class="img-box" style="height: 45%;">
+                            <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">16</div>
+        </div>
+
+        <!-- Peji 17: Tedarik Zinciri -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l">SÜRDÜRÜLEBİLİRLİK TEDARİK<br>ZİNCİRİ VE STRATEJİMİZ</h2>
+                <div class="accent-line"></div>
+
+                <p>Tarımsal üretimin planlanmasından yaprak tütünün teminine kadar kalite, süreklilik ve şeffaf ilişki yönetimi temel ilkemizdir. Sözleşmeli tarım modeliyle ekim alanları, miktarlar ve beklentiler sezon öncesi belirlenir, uzun vadeli iş ortaklıkları kurulur. Prestij Tütün, bu yapıyı yalnızca ticari bir ilişki olarak değil, karşılıklı sorumluluk ve güvene dayalı bir iş ortaklığı olarak değerlendirmektedir.</p>
+
+                <p>Ekimden hasada tüm süreçler saha ekiplerince dijital uygulamalarla (One Leaf) takip edilir, izlenebilirlik sağlanır. Çevresel ve sosyal etkilerin yönetimi, tedarik zinciri uygulamalarının ayrılmaz bir parçası olarak ele alınmaktadır. CPA ve NTRM eğitimleri, toprak analizi desteği ve Köy Kadını Projesi gibi çalışmalar riskleri azaltmaktadır. Tedarikçi ağımızın %96'sı yerli üreticilerden oluşmaktadır.</p>
+
+                <h3 class="title-m mt-10">Sürdürülebilirlik Stratejimiz</h3>
+                <div class="bento-grid">
+                    <div class="bento-item col-span-6" style="border-top: 4px solid var(--navy);">
+                        <h4 class="text-navy">Strateji Oluşumu</h4>
+                        <p style="font-size: 10pt;">Yerli tütün kullanımı, büyük yapraklı tütünler, iklim riskleri ve sosyal uygunluk beklentileri analiz edilmiştir. 2025 Haziran ayında yönetim ve saha ekiplerine Stratejik Sürdürülebilirlik Eğitimleri (16-17 Haziran) verilmiştir.</p>
+                    </div>
+                    <div class="bento-item col-span-6" style="border-top: 4px solid var(--orange);">
+                        <h4 class="text-navy">BSAT Boşluk Analizi</h4>
+                        <p style="font-size: 10pt;">Performans nesnel olarak Temel Sürdürülebilirlik Değerlendirme Aracı (BSAT) ile ölçülmüştür. Çevresel, sosyal ve yönetişim başlıklarında boşluklar tespit edilerek aksiyon planları oluşturulmuştur.</p>
+                    </div>
+                </div>
+                
+                <p class="mt-5">Bu çerçevede çevresel boyutta güneş enerjisi ve ziraî atık geri dönüşümü; sosyal boyutta çalışan yan hakları ve bağlılık artırımı; yönetişimde ise performans izleme ve kurumsal entegrasyon hedefleri belirlenmiştir. Şirketin temel iş stratejisi; sürdürülebilir büyüme, müşteri odaklılık ve dijital dönüşüm yoluyla rekabet avantajı sağlama hedefleri üzerine inşa edilmiştir.</p>
+            </div>
+            <div class="page-number">17</div>
+        </div>
+
+        <!-- Peji 18: Vizyon -->
+        <div class="page bg-gray">
+            <div class="page-content">
+                <div class="split-layout">
+                    <div class="split-col" style="flex: 0.6;">
+                        <h2 class="title-l">SÜRDÜRÜLEBİLİRLİK<br><span class="text-orange">VİZYONUMUZ</span></h2>
+                        <div class="accent-line"></div>
+                        <p>Prestij Tütün, tarımsal üretimin doğasından kaynaklanan çevresel, sosyal ve operasyonel riskleri kurumsal dayanıklılığını artıran bir gelişim alanı olarak ele alır. BSAT analizine göre mevcut güçlü saha uygulamalarının politika ve izleme mekanizmalarıyla desteklenmesi amacıyla 3 stratejik odak alanı belirlenmiştir:</p>
+                        
+                        <ul class="feature-list mt-5">
+                            <li><strong>Sorumlu Tedarik Zinciri:</strong> İklim, mevzuat ve pazar risklerini öngörebilen izlenebilir tedarik yapısı.</li>
+                            <li><strong>Sürdürülebilir Tarım:</strong> Su/girdi kullanımı, toprak sağlığı ve çalışma koşullarının sistematik izlenmesi.</li>
+                            <li><strong>Kurumsal Yönetişim Kapasitesi:</strong> Sürdürülebilirliğin karar alma süreçlerine tam entegrasyonu.</li>
+                        </ul>
+
+                        <h2 class="title-l mt-10">PAYDAŞ KATILIMI</h2>
+                        <div class="accent-line" style="background-color: var(--mint); width:40px;"></div>
+                        <p>2025 yılında iç paydaşlar (çalışanlar) ve dış paydaşlar (müşteriler, ekiciler, tedarikçiler, kamu, danışmanlar) katılımıyla 56 kişilik Paydaş Önceliklendirme Anketi yapılmıştır. Anket; çevre, sosyal ve yönetişim temalarında algı ve beklentileri ölçmüştür.</p>
+                        <p>İç paydaşlar iş sürekliliği, İSG ve kurumsal güveni öne çıkarırken; dış paydaşlar (özellikle üreticiler) ürün kalitesi, kırsal kalkınma ve etik uyumu en yüksek öncelik olarak değerlendirmiştir.</p>
+                    </div>
+                    <div class="split-col" style="flex: 0.4;">
+                        <div class="filler-quote" style="margin-top:0;">
+                            Prestij, yalnızca ürün kalitesiyle değil; doğaya, topluma ve üreticiye karşı üstlenilen sorumlulukla tanımlanır.
+                        </div>
+                        <div class="img-box flex-spacer">
+                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">18</div>
+        </div>
+
+        <!-- Peji 19: Oncelikli Konular -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l">ÖNCELİKLİ KONULAR</h2>
+                <div class="accent-line"></div>
+                <p>Paydaş analizi ve BSAT boşluk analizi bulguları birlikte değerlendirilerek, Prestij Tütün’ün faaliyetleri açısından anlamlı, ölçülebilir ve yönetilebilir 12 öncelikli sürdürülebilirlik konusu belirlenmiştir. Bu konular, hem Prestij Tütün üzerindeki etkiyi (iç etki) hem de paydaşlar ve toplum üzerindeki etkiyi (dış etki) temsil edecek şekilde seçilmiştir.</p>
+
+                <div class="bento-grid mt-10">
+                    <div class="bento-item col-span-12 bg-navy text-light">
+                        <h4 class="text-orange">YÜKSEK ÖNCELİK</h4>
+                        <p style="font-size: 10pt; color: #cbd5e0; margin-bottom: 12px;">Şirket sürekliliği ve paydaş/toplum açısından kritik olan, iç ve dış etkisi en yüksek seviyedeki alanlar.</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <ul style="font-size: 10.5pt; color: var(--white); margin-bottom: 0;">
+                                <li>Tedarik zinciri sürekliliği ve sözleşmeli tarım yönetimi</li>
+                                <li>Üretici refahı ve kırsal kalkınmaya katkı</li>
+                                <li>İş sağlığı ve güvenliği</li>
+                            </ul>
+                            <ul style="font-size: 10.5pt; color: var(--white); margin-bottom: 0;">
+                                <li>Etik ilkeler, yasal uyum ve kurumsal güven</li>
+                                <li>Çocuk işçiliği riskinin önlenmesi ve sosyal uygunluk</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bento-item col-span-6 bg-mint text-light">
+                        <h4 class="text-navy">ORTA ÖNCELİK</h4>
+                        <p style="font-size: 10pt; color: rgba(255,255,255,0.9); margin-bottom: 12px;">Paydaş etkisi yüksek, operasyonel seviyede yönetilen alanlar.</p>
+                        <ul style="font-size: 10.5pt; color: var(--white); margin-bottom: 0;">
+                            <li>İklim değişikliği ve tarımsal riskler</li>
+                            <li>Su kaynaklarının yönetimi</li>
+                            <li>Enerji kullanımı ve verimliliği</li>
+                        </ul>
+                    </div>
+
+                    <div class="bento-item col-span-6" style="background: var(--light-gray); border: 1px solid var(--mid-gray);">
+                        <h4 class="text-mint">ÖNCELİKLİ</h4>
+                        <p style="font-size: 10pt; color: var(--text-muted); margin-bottom: 12px;">Operasyonel etki yüksek, dış görünürlük daha sınırlı alanlar.</p>
+                        <ul style="font-size: 10.5pt; color: var(--text-main); margin-bottom: 0;">
+                            <li>Ürün kalitesi ve müşteri memnuniyeti</li>
+                            <li>Çalışan gelişimi, yetkinlik ve bağlılık</li>
+                            <li>Kurumsal yönetişim ve risk yönetimi</li>
+                            <li>Atık yönetimi ve döngüsel ekonomi</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="page-number">19</div>
+        </div>
+
+        <!-- Peji 20: Riskler 1 -->
+        <div class="page bg-gray">
+            <div class="page-content">
+                <h2 class="title-l">SÜRDÜRÜLEBİLİRLİK RİSKLERİ VE FIRSATLARI (1)</h2>
+                <div class="accent-line"></div>
+                <p>Prestij Tütün, uluslararası raporlar ve BSAT sonuçlarıyla sürdürülebilirlik risklerini Tedarik Zinciri Durum Tespiti (SCDD) kapsamında tanımlar, önceliklendirir, aksiyon alır ve izler. Türkiye’nin iklim kırılganlığı, sözleşmeli tarım modelini hem risk hem de stratejik değer yaratma fırsatı yapmaktadır.</p>
+                
+                <h3 class="title-m mt-5">Sistemik Riskler</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Risk / Fırsat</th>
+                                <th>Prestij Tütün'e Etkisi</th>
+                                <th>Alınan Aksiyonlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sürdürülebilirlik yönetiminin operasyonel kalması</td>
+                                <td>Ölçüm, hedef ve izleme boşluğu</td>
+                                <td>Sürdürülebilirlik Ekibi oluşturulmuş; toplantılarla ele alınmaktadır.</td>
+                            </tr>
+                            <tr>
+                                <td>Veri toplama ve izlenebilirlik zorlukları</td>
+                                <td>Raporlama ve müşteri taleplerinde zorlanma</td>
+                                <td>KYS sistemi ile veri toplama yapılandırılmıştır.</td>
+                            </tr>
+                            <tr>
+                                <td>Mevzuat uyum riskleri</td>
+                                <td>İtibar ve ticari risk</td>
+                                <td>Uzman çalışanlarla risk değerlendirmeleri yapılmaktadır.</td>
+                            </tr>
+                            <tr>
+                                <td>Kurumsal risk yönetimi eksikliği</td>
+                                <td>Yönetim kararlarında kör noktalar</td>
+                                <td>İç iletişim ve entegrasyon güçlendirilmiştir.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="title-m mt-5">İklim Kaynaklı Riskler</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Risk / Fırsat</th>
+                                <th>Risk Türü</th>
+                                <th>Etkisi & Alınan Aksiyon</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Artan sıcaklıklar ve kuraklık</td>
+                                <td>Fiziksel – Kronik</td>
+                                <td>Verim kaybı. Teknik ekipler üreticilerle yakın izleme yapar.</td>
+                            </tr>
+                            <tr>
+                                <td>Aşırı hava olayları (don, sel)</td>
+                                <td>Fiziksel – Akut</td>
+                                <td>Tedarik süreksizliği. Erken müdahale ve bilgilendirme.</td>
+                            </tr>
+                            <tr>
+                                <td>İklim regülasyonları ve raporlama</td>
+                                <td>Geçiş Riski</td>
+                                <td>Kurumsal iklim yönetimi. Danışmanlık hizmetleri başlatıldı.</td>
+                            </tr>
+                            <tr>
+                                <td>Karbon ayak izi baskısı</td>
+                                <td>Geçiş Riski</td>
+                                <td>Enerji verimliliği. 2026'da karbon ölçümleri başlayacak.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="page-number">20</div>
+        </div>
+
+        <!-- Peji 21: Riskler 2 -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l">SÜRDÜRÜLEBİLİRLİK RİSKLERİ VE FIRSATLARI (2)</h2>
+                <div class="accent-line"></div>
+                
+                <h3 class="title-m">Operasyonel ve Pazar Riskleri</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kategori</th>
+                                <th>Risk / Fırsat</th>
+                                <th>Alınan Aksiyonlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="2" style="font-weight: bold; background: var(--navy-soft);">Operasyonel</td>
+                                <td>Sözleşmeli tarımda üretici sürekliliği ve Su yönetimi</td>
+                                <td>Uzun vadeli sözleşmeler, üretici destekleri, iyi tarım eğitimleri.</td>
+                            </tr>
+                            <tr>
+                                <td>İSG ve Kalite dalgalanmaları</td>
+                                <td>Prosedür, İSG eğitimleri, iç/dış denetimlerle kalite sistemleri.</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" style="font-weight: bold; background: var(--orange-soft);">Pazar</td>
+                                <td>Küresel politikalar ve müşteri beklentileri</td>
+                                <td>Pazar gelişmeleri takibi, sürdürülebilirlik taleplerine uyum rotası.</td>
+                            </tr>
+                            <tr>
+                                <td>Yerli tütün ve izlenebilirlik talebi</td>
+                                <td>Sorumlu tedarik, yeni müşteri kazanımı için izlenebilirlik.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="title-m mt-10">Sürdürülebilir Kalkınma Amaçları (SKA) Eşleştirmesi</h3>
+                <div class="split-layout" style="margin-top: 20px;">
+                    <div class="split-col" style="flex: 0.65;">
+                        <ul style="font-size:10.5pt;">
+                            <li style="margin-bottom: 10px;"><strong>Tedarik zinciri sürekliliği ve sözleşmeli tarım:</strong> SKA 2 (Açlığa Son), SKA 8, SKA 12</li>
+                            <li style="margin-bottom: 10px;"><strong>Üretici refahı ve kırsal kalkınmaya katkı:</strong> SKA 1 (Yoksulluğa Son), SKA 2, SKA 8</li>
+                            <li style="margin-bottom: 10px;"><strong>Ürün kalitesi:</strong> SKA 9, SKA 12 (Sorumlu Üretim)</li>
+                            <li style="margin-bottom: 10px;"><strong>İş sağlığı ve güvenliği:</strong> SKA 3 (Sağlık), SKA 8</li>
+                            <li style="margin-bottom: 10px;"><strong>Etik, Yasal Uyum ve Çocuk İşçiliğinin Önlenmesi:</strong> SKA 8, SKA 16 (Barış ve Adalet)</li>
+                            <li style="margin-bottom: 10px;"><strong>İklim, Enerji & Su ve Atık:</strong> SKA 6, SKA 7, SKA 12, SKA 13 (İklim Eylemi)</li>
+                            <li style="margin-bottom: 10px;"><strong>Çalışan gelişimi:</strong> SKA 4 (Nitelikli Eğitim), SKA 8</li>
+                        </ul>
+                    </div>
+                    <div class="split-col" style="flex: 0.35;">
+                        <div class="img-box h-100">
+                            <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="page-number">21</div>
+        </div>
+
+        <!-- Peji 22: Cevre -->
+        <div class="page bg-gray">
+            <div class="page-content">
+                <div class="split-layout">
+                    <div class="split-col" style="flex: 0.6;">
+                        <h2 class="title-l text-mint">ÇEVRE YÖNETİMİ</h2>
+                        <div class="accent-line" style="background-color: var(--mint);"></div>
+                        
+                        <p style="font-size: 13pt; color: var(--navy); font-weight: bold; margin-bottom: 20px;">Doğaya Saygılı Tarım, Dayanıklı Üretim</p>
+                        
+                        <p>Prestij Tütün için çevre kavramı; tütünün tarımsal üretiminden alım ve ticaret süreçlerine kadar uzanan değer zinciri boyunca doğal kaynakların korunması, çevresel etkilerin sorumlu bir yaklaşımla yönetilmesi ve tarımsal üretimin sürdürülebilirliğinin sağlanması anlamına gelmektedir. Şirketin faaliyet yapısı gereği çevre, öncelikle toprak, su, iklim koşulları ve biyolojik denge ile doğrudan ilişkilidir.</p>
+                        
+                        <h3 class="title-s mt-10" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Enerji Yönetimi</h3>
+                        <p>Enerji tüketim verileri düzenli izlenmekte; elektrik ve yakıt tüketim eğilimleri analiz edilmektedir. Yenilenebilir enerji kullanımı kapsamında, Bornova’da yer alan tesis bünyesinde 34 adet güneş panelinden oluşan 15 kW kurulu güce sahip bir güneş enerjisi sistemi 2024 yılında devreye alınmıştır.</p>
+                        <p><strong>Güneş Enerjisi Üretimi:</strong> 2024'te 15.707 kWh, 2025'te ise 26.706 kWh elektrik üretilmiştir.</p>
+                        <p>Prestij Tütün elektrik tüketimi 2024 yılında 54.123 kWh olarak gerçekleşmiş; 2025 yılında ise 29.741 kWh olarak kaydedilmiştir. Kömür tüketiminde kademeli azalış (2022'de 16 ton'dan 2025'te 2.4 tona) ve doğalgaz kullanımında artış ile görece düşük karbonlu yakıtlara yönelim sağlanmıştır.</p>
+
+                        <h3 class="title-s mt-10" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Emisyonların Yönetimi</h3>
+                        <p>Enerji verilerinin sistematik izlenmesi, karbon ayak izi hesaplamasına hazırlık teşkil etmektedir. Mevcut veri seti; 2026 yılı sera gazı emisyonlarının hesaplanması, izlenmesi ve raporlanmasına yönelik çalışmalara girdi sağlayacak şekilde yapılandırılmaktadır. Ayrıca yürürlükteki mevzuat gereklilikleri doğrultusunda baca gazı ölçümleri düzenli olarak gerçekleştirilmektedir.</p>
+                    </div>
+                    <div class="split-col" style="flex: 0.4;">
+                        <div class="bento-item kpi-card" style="border-top: 4px solid var(--mint);">
+                            <div class="kpi-num" style="color:var(--mint);">26.7K kWh</div>
+                            <div class="kpi-text">2025 Güneş Enerjisi Üretimi</div>
+                        </div>
+                        <div class="bento-item kpi-card" style="border-top: 4px solid var(--mint); margin-top: 15px;">
+                            <div class="kpi-num" style="color:var(--mint);">↓ 85%</div>
+                            <div class="kpi-text">Kömür Tüketiminde Azalma (3 Yıl)</div>
+                        </div>
+                        <div class="img-box flex-spacer" style="margin-top: 15px;">
+                            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">22</div>
+        </div>
+
+        <!-- Peji 23: Cevre 2 -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l">SU, TOPRAK VE ATIK YÖNETİMİ</h2>
+                <div class="accent-line"></div>
+                
+                <div class="split-layout">
+                    <div class="split-col">
+                        <h3 class="title-s" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Su Tüketimi</h3>
+                        <p>Faaliyetlerimiz kapsamında kullanılan su şebeke suyudur. Toplam su tüketimi 2025 yılında 2.002 ton olmuştur. Artış, operasyonel hacim ve saha ziyaretlerindeki yoğunluk kaynaklıdır. Önümüzdeki dönemlerde su stresi analizlerinin yapılması ve su verimliliğine yönelik göstergelerin belirlenmesi hedeflenmektedir.</p>
+
+                        <h3 class="title-s mt-5" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Toprak Sağlığı ve Biyoçeşitlilik</h3>
+                        <p>Toprak analizleriyle gübreleme programları optimize edilir. İnsan sağlığı ve biyoçeşitlilik gözetilerek yalnızca ruhsatlı bitki koruma ürünleri (pestisit) kullanılır. 2025 yılının son çeyreği itibarıyla biyoçeşitliliğin korunmasına yönelik uygulamalar daha sistematik bir çerçevede ele alınmaya başlanmıştır. İklim istasyonları ile meteorolojik veriler takip edilip erken uyarı mekanizmaları kurulur.</p>
+
+                        <h3 class="title-s mt-5" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Atık Yönetimi ve Döngüsel Ekonomi</h3>
+                        <p>Faaliyetlerde tehlikeli olmayan atıklar oluşur. Tüm atıklar (2025'te 368 ton) Çevre, Şehircilik ve İklim Değişikliği Bakanlığı tarafından yetkilendirilmiş lisanslı firmalara, MoTAT üzerinden gönderilir.</p>
+                        
+                        <div class="bento-item bg-mint text-light" style="margin-bottom:0;">
+                            <h4 class="text-navy">Çevresel Projelerimiz</h4>
+                            <p style="font-size: 10pt; color: var(--white); margin-bottom: 0;">Boş Zirai İlaç Ambalajları (CPA) Geri Dönüşüm Projesi, Prestij Tütün öncülüğünde Ege Bölgesi geneline yayıldı. 2024'te Acıpayam'da 235 kg ambalaj bertaraf edildi. Merkez ofiste pilot elektrikli araç devrede.</p>
+                        </div>
+                    </div>
+                    <div class="split-col">
+                        <div class="img-box h-100">
+                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">23</div>
+        </div>
+
+        <!-- Peji 24: Sosyal -->
+        <div class="page bg-navy text-light">
+            <div class="page-content text-light">
+                <h2 class="title-l text-light">SOSYAL: ÖNCE İNSAN</h2>
+                <div class="accent-line" style="background-color: var(--orange);"></div>
+                
+                <p style="color: #cbd5e0; font-size: 11pt;">Prestij Tütün Sanayi ve Ticaret A.Ş.’nin sosyal boyuttaki yaklaşımı, faaliyetlerinin merkezinde yer alan üretici çiftçiler, çalışanlar ve kırsal topluluklar üzerindeki etkilerin sorumlu bir şekilde yönetilmesini esas almaktadır.</p>
+
+                <div class="filler-quote" style="border-left-color: var(--mint); background: rgba(255,255,255,0.05); color: var(--white); border-radius: 12px; margin: 30px 0;">
+                    "İş sağlığı ve güvenliği yaklaşımımız “önce insan” ilkesiyle şekillenir. Sıfır iş kazası hedefi doğrultusunda önleyici bir yönetim anlayışı benimsiyoruz."
+                </div>
+
+                <h3 class="title-m mt-10" style="color: var(--mint);">İş Sağlığı ve Güvenliği (İSG)</h3>
+                <p style="color: #cbd5e0;">Raporlama döneminde şirket bünyesinde herhangi bir iş kazası yaşanmamıştır. Tüm çalışanlarımıza düzenli saha denetimleri, periyodik İSG eğitimleri ve koruyucu ekipman (KKD) temini sağlanmaktadır. İş sağlığı ve güvenliği politikası kapsamında; 2022-2025 dönemini kapsayan risk değerlendirme çalışmaları gerçekleştirilmiştir.</p>
+                <p style="color: #cbd5e0;">Sahada tütün üretim aşamalarında; üreticilere ağır yük kaldırma, kesici alet kullanımı, açık alanda çalışma ve zirai ilaç güvenliği gibi konularda bire bir bilgilendirmeler yapılır.</p>
+                
+                <div class="bento-grid mt-10">
+                    <div class="bento-item col-span-4 kpi-card" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); box-shadow: none;">
+                        <div class="kpi-num text-mint">0</div>
+                        <div class="kpi-text text-light">İş Kazası (2025)</div>
+                    </div>
+                    <div class="bento-item col-span-4 kpi-card" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); box-shadow: none;">
+                        <div class="kpi-num text-mint">8</div>
+                        <div class="kpi-text text-light">Saat Ort. İSG Eğitimi</div>
+                    </div>
+                    <div class="bento-item col-span-4 kpi-card" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); box-shadow: none;">
+                        <div class="kpi-num text-mint">%80</div>
+                        <div class="kpi-text text-light">DÖF Tamamlanma Oranı</div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number" style="color: rgba(255,255,255,0.5);">24</div>
+        </div>
+
+        <!-- Peji 25: Cesitlilik -->
+        <div class="page">
+            <div class="page-content">
+                <div class="split-layout">
+                    <div class="split-col" style="flex: 0.6;">
+                        <h2 class="title-l">ÇEŞİTLİLİK VE<br>ÇALIŞAN GELİŞİMİ</h2>
+                        <div class="accent-line"></div>
+                        
+                        <h3 class="title-s" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Çeşitlilik, Kapsayıcılık ve Fırsat Eşitliği</h3>
+                        <p>2025 yılı itibarıyla Prestij Tütün bünyesinde toplam 59 çalışan görev yapmaktadır. Ocak 2025’te 51 olan çalışan sayısı, yıl içerisinde yaklaşık %16 oranında artış göstermiştir. Çalışanların yaklaşık %30’unun 20–30 yaş aralığında yer alması, genç istihdamı desteklemektedir.</p>
+                        <p>Tütün sektöründe kadın istihdamını artırmaya yönelik adımlar atmaktayız; 2024'te 5 olan kadın çalışan sayısı, 2025 yılı sonunda 8'e yükselmiş, kadın çalışan sayısında %60 oranında artış sağlanmıştır.</p>
+                        <p>İnsan haklarına saygı, çocuk işçiliğinin önlenmesi, zorla çalıştırmaya sıfır tolerans prensipleri, JTI Grup politikalarıyla tam uyum içindedir. Bugüne kadar bildirilen herhangi bir ayrımcılık vakası bulunmamaktadır.</p>
+
+                        <h3 class="title-s mt-10" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Çalışan Gelişimi</h3>
+                        <p>2025 yılı itibarıyla performans değerlendirme süreci dijital bir platform üzerinden yürütülmeye başlanmıştır. Performans değerlendirme sonuçları; terfi, görev değişikliği ve bireysel gelişim planlarının oluşturulmasında temel girdi olarak kullanılmaktadır.</p>
+                        <ul class="feature-list" style="font-size: 10pt;">
+                            <li>2025 yılında toplam 2035,5 saat eğitim gerçekleştirilmiştir.</li>
+                            <li>Çalışan başına yıllık ortalama eğitim süresi 34,5 saattir.</li>
+                            <li>Saha ekiplerine Yeni ALP, CPA/NTRM, Defansif Sürüş eğitimleri verildi.</li>
+                        </ul>
+                    </div>
+                    <div class="split-col" style="flex: 0.4;">
+                        <div class="bento-item bg-navy text-light" style="margin-top:0; border-radius: 20px;">
+                            <h4 class="text-mint" style="font-size: 12pt;">Demografi (2025)</h4>
+                            <p class="text-white" style="font-size:42pt; font-weight:900; margin: 10px 0; line-height: 1; letter-spacing: -0.05em;">59</p>
+                            <p class="text-white" style="font-size: 11pt; margin-bottom: 0;">Toplam Çalışan<br><span style="color: var(--mint);">8 Kadın, 51 Erkek</span></p>
+                        </div>
+                        <div class="img-box flex-spacer mt-5">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">25</div>
+        </div>
+
+        <!-- Peji 26: Refah -->
+        <div class="page bg-gray">
+            <div class="page-content">
+                <h2 class="title-l">REFAH VE EİB PROJELERİ</h2>
+                <div class="accent-line"></div>
+                
+                <div class="split-layout">
+                    <div class="split-col">
+                        <h3 class="title-s" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Çalışan Refahı ve Memnuniyeti</h3>
+                        <p>Çalışan memnuniyeti ve bağlılığı, şirket bünyesinde düzenli olarak gerçekleştirilen anketler aracılığıyla izlenmektedir. Yemek Memnuniyet Anketi ve Genel Memnuniyet Anketi uygulanmaktadır. Kadın çalışanlarda 2022-2025 döneminde yüksek memnuniyet seviyesi korunurken, erkeklerde artış eğilimi gözlenmiştir.</p>
+                        <p>Ücretlendirme sistemi adil ve şeffaftır. Yan haklar şunları kapsar: Özel sağlık/hayat sigortası, şirket aracı, ikramiye ve yakacak yardımı, kadın çalışanlara HPV aşısı desteği, yasal sürelere ek 3 gün idari izin ve taşınma izni.</p>
+
+                        <h3 class="title-s mt-10" style="color: var(--navy); text-transform: none; letter-spacing: 0;">EİB Projeleri ve Üretici Uygulamaları</h3>
+                        <p>Ege İhracatçı Birlikleri koordinasyonunda yürütülen projelere aktif katılıyoruz:</p>
+                        <ul class="feature-list" style="font-size: 10pt;">
+                            <li><strong>Çocuk İşçiliği:</strong> İEÜ iş birliğiyle koruyucu davranış geliştirilmesi, 12 Haziran farkındalık çalışmaları.</li>
+                            <li><strong>İSG:</strong> Boş zirai ilaç ambalaj atıklarının (CPA) bertarafı, kilitli ilaç dolabı dağıtımı, Ege Üniv. ile Yeşil Tütün Hastalığı araştırmaları. Sunteks ile yeni tasarım KKE tulum çalışmaları.</li>
+                            <li><strong>Çalışma Koşulları:</strong> EYKA ile "Tarımda Adil ve Güvenli Çalışma" pilot eğitimleri. Çiftçi Avantaj Kart (ÇAK) dağıtımı, kadın üreticilere özel sağlık check-up paketleri.</li>
+                            <li><strong>Üretim Kalitesi:</strong> Örnek depo, süzgülü kova eğitimleri. Köy Kadını Projesi ile 25 kadının eğitimi ve 391 üreticiye bilgi aktarımı.</li>
+                        </ul>
+                    </div>
+                    <div class="split-col" style="flex: 0.4;">
+                        <div class="img-box h-100">
+                            <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">26</div>
+        </div>
+
+        <!-- Peji 27: Projeler 1 -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l">ÜRETİCİ ODAKLI PROJELER (1)</h2>
+                <div class="accent-line"></div>
+                <p>Prestij Tütün, sözleşmeli tarım modeli kapsamında üreticilerin iş sağlığı, üretim kalitesi ve tarımsal sürdürülebilirliğini destekleyen saha bazlı faaliyetlerini kesintisiz sürdürmektedir. Bu faaliyetler; teknik destekler, eğitimler ve sosyal katkı çalışmalarıyla bütüncül bir yapı içinde ele alınmaktadır.</p>
+
+                <div class="bento-grid mt-10">
+                    <div class="bento-item col-span-6 factbox orange" style="margin:0;">
+                        <h4 class="text-orange" style="font-size: 13pt;">İş Sağlığı ve Güvenliği</h4>
+                        <p style="font-size:10pt; margin-bottom:8px;"><strong>KKE Dağıtımı:</strong> Maske, eldiven, gözlük, tulum ve şapka içeren koruyucu ekipman setleri her yıl dağıtılmaktadır.</p>
+                        <p style="font-size:10pt;"><strong>İlk Yardım Çantası:</strong> Üreticilere temel ilk yardım seti verilerek acil durumlara hazırlık artırılmaktadır.</p>
+                    </div>
+                    <div class="bento-item col-span-6 factbox orange" style="margin:0;">
+                        <h4 class="text-orange" style="font-size: 13pt;">Güvenli Tarımsal Uygulamalar</h4>
+                        <p style="font-size:10pt; margin-bottom:8px;"><strong>Ruhsatlı İlaçlar:</strong> Sadece yetkili bayilerden onaylı ilaç kullanımı desteklenir. İlaç numunesi programıyla laboratuvar kalıntı analizleri yapılır.</p>
+                        <p style="font-size:10pt;"><strong>Dijital Tarım:</strong> İklim istasyonları ile veriler izlenerek sulama planlaması ve erken önlem mekanizmaları çalıştırılır.</p>
+                    </div>
+                </div>
+
+                <h3 class="title-m mt-10">Sertifikalı Tohum Üretimi</h3>
+                <p>Tarımsal verimlilik, kalite ve izlenebilirlik için hastalıklara dayanıklı oryantal tohumlar üretip dağıtıyoruz. Ekicilerin tohum ihtiyacının %80'i sertifikalı tohumlardan karşılanır.</p>
+                <div class="bento-grid" style="gap: 10px;">
+                    <div class="bento-item col-span-4" style="background: var(--light-gray); padding: 15px;">
+                        <strong>Ege Özbaş & Sarıbağlar:</strong> Kuraklığa dayanıklı, ~150 kg dekar verimi. Şeker: %14.
+                    </div>
+                    <div class="bento-item col-span-4" style="background: var(--light-gray); padding: 15px;">
+                        <strong>Akhisar 97:</strong> Mavi küfe dayanıklı, uzun boylu çeşit. Nikotin: %0,79.
+                    </div>
+                    <div class="bento-item col-span-4" style="background: var(--light-gray); padding: 15px;">
+                        <strong>Birlik 124 & 128:</strong> Şeker oranı yüksek kır taban çeşitleri. Kırımı kolay.
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">27</div>
+        </div>
+
+        <!-- Peji 28: Projeler 2 -->
+        <div class="page bg-gray">
+            <div class="page-content">
+                <div class="split-layout">
+                    <div class="split-col" style="flex: 0.6;">
+                        <h2 class="title-l">ÜRETİCİ ODAKLI PROJELER (2)</h2>
+                        <div class="accent-line"></div>
+
+                        <h3 class="title-s" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Sürdürülebilir Tütün Programı (STP)</h3>
+                        <p>Çevresel, sosyal ve etik standartların güçlendirilmesini desteklemek amacıyla STP çerçevesi uygulanır. 2024 itibarıyla müşterilerle yürütülen değerlendirmeler, çevresel/sosyal gelişim alanları yaratmış, şeffaflığı artırmıştır. STP, Prestij Tütün’ün MAS, ALP ve SCDD yaklaşımlarını tamamlayıcı bir çerçeve sunmaktadır.</p>
+
+                        <h3 class="title-s mt-10" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Çiftçi Finansal Okuryazarlık Eğitimi Projesi</h3>
+                        <p>Üreticilerin ekonomik dayanıklılığını güçlendirmek için Peterson Solutions iş birliğiyle Kasım 2025'te Kale, Tavas ve Karacasu ilçelerinde 175 üreticiye finansal eğitim verilmiştir.</p>
+                        <ul class="feature-list mt-5">
+                            <li>"İyi borç - kötü borç" ayrımı, bütçe yönetimi, işletme ile hane bütçesinin ayrılması öğretildi.</li>
+                            <li>Eğitim memnuniyeti 5 üzerinden 4.62 puan oldu. Genç ve kadın üreticilerin yoğun ilgisi tespit edildi.</li>
+                        </ul>
+
+                        <h3 class="title-s mt-10" style="color: var(--navy); text-transform: none; letter-spacing: 0;">Üretim Kalitesini Destekleyici Malzemeler</h3>
+                        <p>Güvenilir üretim için kutu çerçevesi, pamuklu bez, çuval, ip, iğne kutusu ve kilitli ilaç dolabı dağıtımları devam etmektedir.</p>
+                    </div>
+                    <div class="split-col" style="flex: 0.4;">
+                        <div class="bento-item bg-orange text-light" style="margin-top:0;">
+                            <h4 class="text-navy" style="font-size: 13pt;">Sosyal Faaliyetler</h4>
+                            <p style="color: var(--white); font-size: 10.5pt; margin-bottom: 0;">Çocukların eğitimine destek olmak amacıyla köy okullarında bilgisayar sınıfları kurulmuş, güvenli oyun alanları oluşturulmuş ve okul çantası dağıtımı yapılmıştır.</p>
+                        </div>
+                        <div class="img-box flex-spacer mt-5">
+                            <img src="https://images.unsplash.com/photo-1427504494785-319ce1473799?auto=format&fit=crop&w=600&q=80" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-number">28</div>
+        </div>
+
+        <!-- Peji 29: Ekler 1 -->
+        <div class="page">
+            <div class="page-content">
+                <h2 class="title-l">PERFORMANS VERİLERİ (1)</h2>
+                <div class="accent-line"></div>
+                
+                <h3 class="title-m">Ekonomik Göstergeler</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Gösterge</th>
+                                <th>Birim</th>
+                                <th>2022</th>
+                                <th>2023</th>
+                                <th>2024</th>
+                                <th>2025</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Toplam Satışlar - Yurt içi</td><td>TL</td><td>328.904.808</td><td>700.344.199</td><td>1.030.311.143</td><td>-</td></tr>
+                            <tr><td>Satış Miktarları</td><td>KG</td><td>4.410.475</td><td>5.455.492</td><td>5.191.825</td><td>-</td></tr>
+                            <tr><td>Sözleşmeli Üretici Sayısı</td><td>Adet</td><td>4.046</td><td>4.831</td><td>5.397</td><td>5.492</td></tr>
+                            <tr><td>Tedarikçi/Çiftçi Ödemeleri</td><td>TL</td><td>312.232.649</td><td>672.818.657</td><td>1.006.438.161</td><td>-</td></tr>
+                            <tr><td>Sözleşmeli Tarım Hacmi</td><td>KG</td><td>5.620.750</td><td>6.867.650</td><td>7.932.900</td><td>8.519.400</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="title-m mt-10">Yenilenemez Doğrudan Enerji ve Su Tüketimi</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kategori</th>
+                                <th>Birim</th>
+                                <th>2022</th>
+                                <th>2023</th>
+                                <th>2024</th>
+                                <th>2025</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Elektrik Tüketimi</td><td>kWh</td><td>37.179</td><td>60.794</td><td>54.123</td><td>29.741</td></tr>
+                            <tr><td>Doğalgaz</td><td>m³</td><td>244,01</td><td>216,20</td><td>2.033,32</td><td>2.813,80</td></tr>
+                            <tr><td>Motorin / Mazot</td><td>Lt</td><td>4.856,82</td><td>11.079,95</td><td>23.750,98</td><td>26.231,95</td></tr>
+                            <tr><td>Benzin</td><td>Lt</td><td>12.238,79</td><td>27.479,14</td><td>47.146,47</td><td>46.262,36</td></tr>
+                            <tr><td>LPG</td><td>Lt</td><td>27.637,91</td><td>45.091,09</td><td>52.086,32</td><td>20.895,29</td></tr>
+                            <tr><td>Kömür</td><td>Ton</td><td>16,27</td><td>5,89</td><td>4,00</td><td>2,43</td></tr>
+                            <tr style="background: var(--navy-soft); font-weight:bold;"><td>Toplam Su Tüketimi</td><td>Ton</td><td>582,70</td><td>637,20</td><td>1.839,60</td><td>2.002,59</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="page-number">29</div>
+        </div>
+
+        <!-- Peji 30: Ekler 2 -->
+        <div class="page bg-gray">
+            <div class="page-content">
+                <h2 class="title-l">PERFORMANS VERİLERİ (2)</h2>
+                <div class="accent-line"></div>
+                
+                <h3 class="title-m">Atık Miktarları ve Yenilenebilir Enerji</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kategori</th>
+                                <th>Birim</th>
+                                <th>2022</th>
+                                <th>2023</th>
+                                <th>2024</th>
+                                <th>2025</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Toplam Tehlikeli Olmayan Atık</td><td>Ton</td><td>74.844</td><td>269.792</td><td>280.586</td><td>368.665</td></tr>
+                            <tr><td>Toplam Bertaraf Edilen Atık</td><td>KG</td><td>51.500</td><td>84.300</td><td>56.800</td><td>-</td></tr>
+                            <tr style="background: var(--mint-soft); font-weight:bold;"><td>Güneş Enerjisi Üretimi</td><td>kWh</td><td>-</td><td>-</td><td>15.707,67</td><td>26.706,65</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="title-m mt-5">Çalışan Demografisi ve İSG</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kategori</th>
+                                <th>2022</th>
+                                <th>2023</th>
+                                <th>2024</th>
+                                <th>2025</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Kadın Çalışan</td><td>4</td><td>5</td><td>5</td><td>8</td></tr>
+                            <tr><td>Erkek Çalışan</td><td>34</td><td>40</td><td>46</td><td>51</td></tr>
+                            <tr style="font-weight:bold; background:var(--navy-soft); color:var(--navy);"><td>Toplam Çalışan</td><td>38</td><td>45</td><td>51</td><td>59</td></tr>
+                            <tr><td>Kaza Sayısı (Tüm Kazalar)</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>Çalışan Başına Yıllık Ort. Eğitim</td><td>-</td><td>-</td><td>-</td><td>34,5 Saat</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3 class="title-m mt-5">Yaşa ve Cinsiyete Göre Çalışan Dağılımı (2025)</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Yaş Grubu</th>
+                                <th>Kadın</th>
+                                <th>Erkek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>18 - 30 Yaş Arası</td><td>1</td><td>11 (%24)</td></tr>
+                            <tr><td>31 - 40 Yaş Arası</td><td>2</td><td>17 (%38)</td></tr>
+                            <tr><td>41 - 50 Yaş Arası</td><td>2</td><td>3 (%7)</td></tr>
+                            <tr><td>51 - 60 Yaş Arası</td><td>0</td><td>4 (%9)</td></tr>
+                            <tr><td>61 Yaş ve Üzeri</td><td>0</td><td>5 (%11)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="page-number">30</div>
+        </div>
+
+        <!-- Peji 31: Kapanis / Arka Kapak -->
+        <div class="page bg-navy text-light">
+            <div class="cover-geometric" style="opacity: 0.15;"></div>
+            <div class="page-content" style="display: flex; flex-direction: column; justify-content: flex-end; z-index: 5; padding: 30mm;">
+                <div style="border-top: 5px solid var(--orange); padding-top: 30px;">
+                    <!-- Rogo no tsuika -->
+                    <img src="https://www.prestijtutun.com/Content/img/logo.png" alt="" class="brand-logo" style="max-width: 250px;">
+                    
+                    <h2 class="title-l text-light" style="font-size: 32pt; margin-bottom: 5px;">PRESTİJ TÜTÜN<br>SAN. VE TİC. A.Ş.</h2>
+                    <p style="font-size: 14pt; color: var(--mint); letter-spacing: 1px; font-weight: bold;">Sürdürülebilirlik Raporu 2024-2025</p>
+                    
+                    <div style="margin-top: 60px; font-size: 11pt; color: rgba(255,255,255,0.7); line-height: 1.8;">
+                        <p style="margin-bottom: 8px;"><strong style="color:var(--white);">Üyelikler:</strong> Ege İhracatçı Birlikleri</p>
+                        <p style="margin-bottom: 8px;"><strong style="color:var(--white);">Merkez Operasyonlar:</strong> İzmir, Türkiye</p>
+                        <p style="margin-bottom: 8px;"><strong style="color:var(--white);">Web:</strong> www.prestijtutun.com</p>
+                        <p style="margin-bottom: 8px;"><strong style="color:var(--white);">Sürdürülebilirlik Platformu:</strong> www.turkishtobacco.org</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
